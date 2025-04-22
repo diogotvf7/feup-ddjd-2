@@ -1,0 +1,11 @@
+Model Information:
+* title:	Beer can
+* source:	https://sketchfab.com/3d-models/beer-can-a373348973f44a6c9e764605c636af5e
+* author:	new_artist (https://sketchfab.com/new_artist)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Beer can" (https://sketchfab.com/3d-models/beer-can-a373348973f44a6c9e764605c636af5e) by new_artist (https://sketchfab.com/new_artist) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

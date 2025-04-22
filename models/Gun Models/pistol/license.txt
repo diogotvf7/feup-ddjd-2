@@ -1,0 +1,11 @@
+Model Information:
+* title:	Pistol
+* source:	https://sketchfab.com/3d-models/pistol-34ebc77c59eb47ef89e0463469237dac
+* author:	Programaton (https://sketchfab.com/programaton)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Pistol" (https://sketchfab.com/3d-models/pistol-34ebc77c59eb47ef89e0463469237dac) by Programaton (https://sketchfab.com/programaton) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

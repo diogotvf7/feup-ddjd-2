@@ -1,0 +1,11 @@
+Model Information:
+* title:	Low-Poly Ammo Can
+* source:	https://sketchfab.com/3d-models/low-poly-ammo-can-958865a802d142f49ec2a6037c63ae0b
+* author:	notcplkerry (https://sketchfab.com/notcplkerry)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Low-Poly Ammo Can" (https://sketchfab.com/3d-models/low-poly-ammo-can-958865a802d142f49ec2a6037c63ae0b) by notcplkerry (https://sketchfab.com/notcplkerry) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

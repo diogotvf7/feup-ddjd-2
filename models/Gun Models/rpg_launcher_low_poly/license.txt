@@ -1,0 +1,11 @@
+Model Information:
+* title:	RPG Launcher Low Poly
+* source:	https://sketchfab.com/3d-models/rpg-launcher-low-poly-1247716d5b6d4b9fa26c678f219d2767
+* author:	Astrien (https://sketchfab.com/Astrien)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "RPG Launcher Low Poly" (https://sketchfab.com/3d-models/rpg-launcher-low-poly-1247716d5b6d4b9fa26c678f219d2767) by Astrien (https://sketchfab.com/Astrien) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

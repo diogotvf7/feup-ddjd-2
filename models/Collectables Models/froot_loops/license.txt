@@ -1,0 +1,11 @@
+Model Information:
+* title:	Cereal box
+* source:	https://sketchfab.com/3d-models/cereal-box-dce9f7895ad94302894be3cb843b7e2e
+* author:	Jose Luis (https://sketchfab.com/JoseLuisRodriguezBosquez)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Cereal box" (https://sketchfab.com/3d-models/cereal-box-dce9f7895ad94302894be3cb843b7e2e) by Jose Luis (https://sketchfab.com/JoseLuisRodriguezBosquez) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

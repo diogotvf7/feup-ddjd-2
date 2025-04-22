@@ -1,0 +1,11 @@
+Model Information:
+* title:	Low Poly Shotgun Shell
+* source:	https://sketchfab.com/3d-models/low-poly-shotgun-shell-da1bd103a86a4e6baab216a55e869e2d
+* author:	slightcherry (https://sketchfab.com/slightcherry)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Low Poly Shotgun Shell" (https://sketchfab.com/3d-models/low-poly-shotgun-shell-da1bd103a86a4e6baab216a55e869e2d) by slightcherry (https://sketchfab.com/slightcherry) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
