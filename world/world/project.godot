@@ -14,3 +14,7 @@ config/name="World"
 run/main_scene="uid://dkpuvhbyw8cro"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+GameManager="*res://GameManager.gd"
