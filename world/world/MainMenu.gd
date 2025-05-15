@@ -57,7 +57,7 @@ func SendPlayerInformation(name, id):
 
 
 
-@rpc("any_peer", "call_local")
+@rpc("authority", "call_local")
 func StartGame():
 	var scene = load("res://testBox.tscn").instantiate()
 	get_tree().root.add_child(scene)
@@ -87,4 +87,7 @@ func _on_join_game_button_down() -> void:
  
 
 func _on_start_game_button_down() -> void:
-	StartGame.rpc()
+	if multiplayer.is_server():
+		StartGame.rpc()  # Only server should trigger the RPC
+	else:
+		print("Only the host can start the game.")
