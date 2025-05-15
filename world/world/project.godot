@@ -11,5 +11,6 @@ config_version=5
 [application]
 
 config/name="World"
+run/main_scene="uid://dkpuvhbyw8cro"
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
