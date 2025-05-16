@@ -17,18 +17,23 @@ func _ready() -> void:
 	multiplayer.connection_failed.connect(connection_failed)
 	
 
+func quit_game():
+	get_tree().quit() 
+
+
 # Gets called on the server and clients
 func peer_connected(id):
-	print("Player Connected " + id)
+	print("Player Connected " + str(id))
 
 # Gets called on the server and clients
 
 func peer_disconnected(id):
-	print("Player Disconnected " + id)
+	print("Player Disconnected " + str(id))
 
 # Called only from clients
 func connected_to_server():
 	print("Connected to Server")
+	SendPlayerInformation.rpc_id(1, %LineEdit.text, multiplayer.get_unique_id())
 
 # Called only from clients
 func connection_failed():
@@ -37,9 +42,25 @@ func connection_failed():
 func _process(delta: float) -> void:
 	pass
 
-func quit_game():
-	get_tree().quit() 
+@rpc("any_peer")
+func SendPlayerInformation(name, id):
+	if !GameManager.Players.has(id):
+		GameManager.Players[id] = {
+			"name": name,
+			"id": id,
+			"score": 0
+		}
+	
+	if multiplayer.is_server():
+		for i in GameManager.Players:
+			SendPlayerInformation.rpc(GameManager.Players[i].name, i)
 
+
+
+@rpc("authority", "call_local")
+func StartGame():
+	var scene = load("res://GameScene.tscn")
+	get_tree().change_scene_to_packed(scene)
 
 func _on_create_game_button_down() -> void:
 	
@@ -53,14 +74,19 @@ func _on_create_game_button_down() -> void:
 	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
 	multiplayer.set_multiplayer_peer(peer)
 	print("Waiting for Players!")
-	
-	
-	pass # Replace with function body.
+	SendPlayerInformation(%LineEdit.text, multiplayer.get_unique_id())
 
 
 func _on_join_game_button_down() -> void:
-	pass # Replace with function body.
-
+	
+	peer = ENetMultiplayerPeer.new()
+	peer.create_client(Address, port)
+	peer.get_host().compress(ENetConnection.COMPRESS_RANGE_CODER)
+	multiplayer.set_multiplayer_peer(peer)
+ 
 
 func _on_start_game_button_down() -> void:
-	pass # Replace with function body.
+	if multiplayer.is_server():
+		StartGame.rpc()
+	else:
+		print("Only the host can start the game.")
