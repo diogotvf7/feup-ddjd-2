@@ -16,17 +16,18 @@ const FOV_CHANGE = 1.5
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
 
+var syncPos = Vector3.ZERO
+
+
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
-	# 1️⃣  give this PlayerTest to its owner
-	var owner_id := int(name)                # you named the node with the peer-id
+	var owner_id := int(name)
 	$MultiplayerSynchronizer.set_multiplayer_authority(owner_id)
 
-	# 2️⃣  NOW query who is local
 	var is_local := multiplayer.get_unique_id() == owner_id
 
-	camera.current = is_local                # only my camera renders for me
+	camera.current = is_local
 	if !is_local:
 		camera.process_mode = Node.PROCESS_MODE_DISABLED
 
@@ -70,6 +71,7 @@ func _physics_process(delta: float) -> void:
 			velocity.x = lerp(velocity.x, direction.x * speed, delta * 3.0)
 			velocity.z = lerp(velocity.z, direction.z * speed, delta * 3.0)
 
+		syncPos = global_position
 
 		t_bob += delta * velocity.length() * float(is_on_floor())
 		camera.transform.origin = _headbob(t_bob)
@@ -80,7 +82,8 @@ func _physics_process(delta: float) -> void:
 
 
 		move_and_slide()
-	
+	else:
+		global_position = global_position.lerp(syncPos, 0.5)
 	
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
