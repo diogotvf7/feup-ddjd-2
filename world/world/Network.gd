@@ -7,6 +7,7 @@ signal player_left(id)
 var peer: ENetMultiplayerPeer
 
 const DEFAULT_PORT := 8910
+const MAX_PLAYERS_TOTAL := 4
 
 func _ready() -> void:
 	multiplayer.peer_connected.connect(_on_peer_connected)
@@ -16,7 +17,8 @@ func _ready() -> void:
 
 # ---------- Hosting / Joining ----------
 
-func host(port:int = DEFAULT_PORT, max_clients:int = 4) -> void:
+func host(port:int = DEFAULT_PORT) -> void:
+	var max_clients := MAX_PLAYERS_TOTAL - 1
 	peer = ENetMultiplayerPeer.new()
 	var err := peer.create_server(port, max_clients)
 	if err != OK:
@@ -37,10 +39,16 @@ func join(address:String, port:int = DEFAULT_PORT) -> void:
 
 # ---------- Internal callbacks ----------
 
-func _on_peer_connected(id:int) -> void:
-	print("Peer ", id, " connected")
-	_register_player({"name":"Player %d" % id}, id)
+
+func _on_peer_connected(id: int) -> void:
+	if GameManager.Players.size() >= MAX_PLAYERS_TOTAL:
+		print("Lobby full – disconnecting peer", id)
+		peer.disconnect_peer(id, true)
+		return
+
+	_register_player({"name": "Player %d" % id}, id)
 	emit_signal("player_joined", id)
+
 
 func _on_peer_disconnected(id:int) -> void:
 	print("Peer ", id, " disconnected")
