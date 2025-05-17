@@ -3,7 +3,6 @@ extends Node3D
 @export var PlayerScene: PackedScene
 
 func _ready() -> void:
-	# Connect the signal so disconnected players are removed
 	Network.player_left.connect(_on_player_left)
 
 	# Spawn all current players
@@ -22,7 +21,7 @@ func _ready() -> void:
 
 func _on_player_left(id: int) -> void:
 	print("Player", id, "left the game")
-	var player := get_node_or_null(str(id))  # assumes player nodes are named as their ID
+	var player := get_node_or_null(str(id))
 	if player:
 		player.queue_free()
 	else:

@@ -5,8 +5,7 @@ extends Control
 var peer
 
 func _ready() -> void:
-	
-	# Main Menu Buttons Connections
+	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	%Exit.pressed.connect(quit_game)
 
 func quit_game():
