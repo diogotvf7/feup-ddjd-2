@@ -8,9 +8,10 @@ func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	%Exit.pressed.connect(quit_game)
 
-	# Connect network signals
 	Network.player_joined.connect(_on_player_joined)
 	multiplayer.connected_to_server.connect(_on_connected_to_server)
+	multiplayer.connection_failed.connect(_on_connection_failed)
+
 	%StartGame.disabled = true
 
 func quit_game():
@@ -31,7 +32,9 @@ func _on_create_game_button_down() -> void:
 
 
 func _on_join_game_button_down() -> void:
+	%StartGame.disabled = true
 	Network.join(Address, port)
+
  
 
 func _on_start_game_button_down() -> void:
@@ -43,12 +46,15 @@ func _on_start_game_button_down() -> void:
 		print("You're not connected to a game.")
 
 func _on_player_joined(id: int) -> void:
-	# Only enable start if you're the host and you're ready
 	if multiplayer.is_server():
 		print("Player joined:", id)
 		%StartGame.disabled = false
 
 func _on_connected_to_server() -> void:
 	print("Connected to server.")
-	# Clients do not enable the Start button
-	# You can update UI or show lobby, etc., here if desired
+	if !multiplayer.is_server():
+		%StartGame.disabled = true
+
+func _on_connection_failed() -> void:
+	print("Connection failed")
+	%StartGame.disabled = true
