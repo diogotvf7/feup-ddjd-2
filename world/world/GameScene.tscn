@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://bm8hdq24o5tw8"]
+[gd_scene load_steps=8 format=3 uid="uid://bm8hdq24o5tw8"]
 
 [ext_resource type="Script" uid="uid://lsfwyi2b4bpb" path="res://SceneManager.gd" id="1_k77ap"]
 [ext_resource type="PackedScene" uid="uid://dy3ajs4ctabub" path="res://testPlayer.tscn" id="2_b5kf5"]
 [ext_resource type="PackedScene" uid="uid://3qbxxs2v0l30" path="res://testBox.tscn" id="2_haeiw"]
+[ext_resource type="PackedScene" uid="uid://chsqjqpehxggq" path="res://pause_menu.tscn" id="4_b5kf5"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_haeiw"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -48,3 +49,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.68984, 0, 0)
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 use_collision = true
 size = Vector3(15, 0.02, 15)
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_b5kf5")]
+visible = false
