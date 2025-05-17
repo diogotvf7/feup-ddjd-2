@@ -26,16 +26,18 @@ func StartGame():
 	get_tree().change_scene_to_packed(scene)
 
 func _on_create_game_button_down() -> void:
+	if multiplayer.has_multiplayer_peer():
+		print("Resetting previous connection before hosting...")
+		multiplayer.multiplayer_peer.close()
+		multiplayer.set_multiplayer_peer(null)
+	
 	Network.host()
 	%StartGame.disabled = false
-
 
 
 func _on_join_game_button_down() -> void:
 	%StartGame.disabled = true
 	Network.join(Address, port)
-
- 
 
 func _on_start_game_button_down() -> void:
 	if multiplayer.has_multiplayer_peer() and multiplayer.is_server():

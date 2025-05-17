@@ -18,6 +18,8 @@ func _ready() -> void:
 # ---------- Hosting / Joining ----------
 
 func host(port:int = DEFAULT_PORT) -> void:
+	_cleanup_network()
+
 	var max_clients := MAX_PLAYERS_TOTAL - 1
 	peer = ENetMultiplayerPeer.new()
 	var err := peer.create_server(port, max_clients)
@@ -30,6 +32,7 @@ func host(port:int = DEFAULT_PORT) -> void:
 
 	var my_id := multiplayer.get_unique_id()
 	_register_player(GameManager.Players.get(my_id, {"name":"Host"}), my_id)
+
 
 func join(address:String, port:int = DEFAULT_PORT) -> void:
 	peer = ENetMultiplayerPeer.new()
@@ -79,16 +82,31 @@ func send_player_information(name:String, id:int) -> void:
 
 # ---------- Helper ----------
 
+func _cleanup_network() -> void:
+	if multiplayer.has_multiplayer_peer():
+		multiplayer.multiplayer_peer.close()
+		multiplayer.set_multiplayer_peer(null)
+
+	GameManager.Players.clear()
+	peer = null
+
+
 func _register_player(info:Dictionary, id:int) -> void:
 	GameManager.Players[id] = {"name":info.name, "id":id, "score":0}
+
+@rpc("authority")
+func force_clients_to_return():
+	_return_to_main_menu()
+
 
 @rpc("authority", "call_local")
 func return_to_main_menu():
 	_return_to_main_menu()
 
 func _return_to_main_menu() -> void:
-	print("Host disconnected. Returning to main menu.")
-	multiplayer.set_multiplayer_peer(null)
-	GameManager.Players.clear()
+	if multiplayer.is_server():
+		force_clients_to_return.rpc()
+
+	_cleanup_network()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	get_tree().change_scene_to_file("res://main_menu.tscn")
