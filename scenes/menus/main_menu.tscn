@@ -1,0 +1,417 @@
+[gd_scene load_steps=17 format=3 uid="uid://dkpuvhbyw8cro"]
+
+[ext_resource type="PackedScene" uid="uid://3qbxxs2v0l30" path="res://scenes/world/testBox.tscn" id="1_ovrgc"]
+[ext_resource type="Script" uid="uid://dsux2sfmpdiob" path="res://scripts/menus/MainMenu.gd" id="2_2o76q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7vrkn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fu7sn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jix8l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_glbon"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nlkkf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qe12f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8qtwp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dy7ct"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0o4t1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0k4wn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j5v2v"]
+
+[sub_resource type="Animation" id="Animation_w44g7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/SubViewportContainer/SubViewport/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.809489, 0.786827, 2)]
+}
+
+[sub_resource type="Animation" id="Animation_iotk1"]
+resource_name = "camera_animation"
+length = 4.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Background/SubViewportContainer/SubViewport/Camera3D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector3(-0.809489, 0.786827, 2), Vector3(-0.600832, 0.786827, 2), Vector3(-0.84035, 0.901257, 2), Vector3(-0.581947, 0.634342, 2), Vector3(-0.809, 0.787, 2)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cm266"]
+_data = {
+&"RESET": SubResource("Animation_w44g7"),
+&"camera_animation": SubResource("Animation_iotk1")
+}
+
+[node name="MainMenu" type="CanvasLayer"]
+
+[node name="Background" type="Node3D" parent="."]
+
+[node name="box" parent="Background" instance=ExtResource("1_ovrgc")]
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Background"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewport" type="SubViewport" parent="Background/SubViewportContainer"]
+handle_input_locally = false
+msaa_3d = 3
+size = Vector2i(1152, 648)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="Background/SubViewportContainer/SubViewport"]
+transform = Transform3D(0.999945, -0.00984237, -0.0037262, 0.0104694, 0.966358, 0.256987, 0.00107149, -0.257012, 0.966408, -0.809489, 0.786827, 2)
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_2o76q")
+
+[node name="MainMenu" type="MarginContainer" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/MainMenu"]
+layout_mode = 2
+
+[node name="GameTitle" type="Label" parent="Control/MainMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 62
+text = "No Cows Left Behind"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/MainMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="LineEdit" type="LineEdit" parent="Control/MainMenu/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="Create Game" type="Button" parent="Control/MainMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fu7sn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jix8l")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_glbon")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_nlkkf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_qe12f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8qtwp")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dy7ct")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0o4t1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0k4wn")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j5v2v")
+text = "Create Game"
+
+[node name="Join Game" type="Button" parent="Control/MainMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fu7sn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jix8l")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_glbon")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_nlkkf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_qe12f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8qtwp")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dy7ct")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0o4t1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0k4wn")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j5v2v")
+text = "Join Game"
+
+[node name="StartGame" type="Button" parent="Control/MainMenu/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fu7sn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jix8l")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_glbon")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_nlkkf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_qe12f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8qtwp")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dy7ct")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0o4t1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0k4wn")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j5v2v")
+disabled = true
+text = "Start Game"
+
+[node name="Settings" type="Button" parent="Control/MainMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fu7sn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jix8l")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_glbon")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_nlkkf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_qe12f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8qtwp")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dy7ct")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0o4t1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0k4wn")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j5v2v")
+text = "Settings"
+
+[node name="Credits" type="Button" parent="Control/MainMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fu7sn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jix8l")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_glbon")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_nlkkf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_qe12f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8qtwp")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dy7ct")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0o4t1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0k4wn")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j5v2v")
+text = "Credits"
+
+[node name="Exit" type="Button" parent="Control/MainMenu/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fu7sn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jix8l")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_glbon")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_nlkkf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_qe12f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8qtwp")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dy7ct")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0o4t1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0k4wn")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j5v2v")
+text = "Exit"
+
+[node name="CreditsMenu" type="MarginContainer" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/CreditsMenu"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CreditsTitle" type="Label" parent="Control/CreditsMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 62
+text = "Credits"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/CreditsMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/CreditsMenu/VBoxContainer"]
+layout_mode = 2
+text = "These are the credits"
+
+[node name="Back" type="Button" parent="Control/CreditsMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fu7sn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jix8l")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_glbon")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_nlkkf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_qe12f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8qtwp")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dy7ct")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0o4t1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0k4wn")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j5v2v")
+text = "Back"
+
+[node name="SettingsMenu" type="MarginContainer" parent="Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control/SettingsMenu"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SettingsTitle" type="Label" parent="Control/SettingsMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_font_sizes/font_size = 62
+text = "Settings"
+
+[node name="MarginContainer" type="MarginContainer" parent="Control/SettingsMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Control/SettingsMenu/VBoxContainer"]
+layout_mode = 2
+text = "These are the settings"
+
+[node name="Setting1" type="Button" parent="Control/SettingsMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fu7sn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jix8l")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_glbon")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_nlkkf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_qe12f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8qtwp")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dy7ct")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0o4t1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0k4wn")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j5v2v")
+text = "Setting 1"
+
+[node name="Setting2" type="Button" parent="Control/SettingsMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fu7sn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jix8l")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_glbon")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_nlkkf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_qe12f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8qtwp")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dy7ct")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0o4t1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0k4wn")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j5v2v")
+text = "Setting 2"
+
+[node name="Setting3" type="Button" parent="Control/SettingsMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fu7sn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jix8l")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_glbon")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_nlkkf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_qe12f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8qtwp")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dy7ct")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0o4t1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0k4wn")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j5v2v")
+text = "Setting 3"
+
+[node name="Back" type="Button" parent="Control/SettingsMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fu7sn")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jix8l")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_glbon")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_nlkkf")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_qe12f")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8qtwp")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dy7ct")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_0o4t1")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0k4wn")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_j5v2v")
+text = "Back"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_cm266")
+}
+autoplay = "camera_animation"
+speed_scale = 0.2
+
+[connection signal="button_down" from="Control/MainMenu/VBoxContainer/Create Game" to="Control" method="_on_create_game_button_down"]
+[connection signal="button_down" from="Control/MainMenu/VBoxContainer/Join Game" to="Control" method="_on_join_game_button_down"]
+[connection signal="button_down" from="Control/MainMenu/VBoxContainer/StartGame" to="Control" method="_on_start_game_button_down"]
+[connection signal="pressed" from="Control/MainMenu/VBoxContainer/Settings" to="Control/MainMenu" method="hide"]
+[connection signal="pressed" from="Control/MainMenu/VBoxContainer/Settings" to="Control/SettingsMenu" method="show"]
+[connection signal="pressed" from="Control/MainMenu/VBoxContainer/Settings" to="Control/MainMenu" method="set_mouse_filter" binds= [0]]
+[connection signal="pressed" from="Control/MainMenu/VBoxContainer/Settings" to="Control/SettingsMenu" method="set_mouse_filter" binds= [1]]
+[connection signal="pressed" from="Control/MainMenu/VBoxContainer/Credits" to="Control/MainMenu" method="hide"]
+[connection signal="pressed" from="Control/MainMenu/VBoxContainer/Credits" to="Control/CreditsMenu" method="show"]
+[connection signal="pressed" from="Control/MainMenu/VBoxContainer/Credits" to="Control" method="set_mouse_filter" binds= [0]]
+[connection signal="pressed" from="Control/MainMenu/VBoxContainer/Credits" to="Control/CreditsMenu" method="set_mouse_filter" binds= [1]]
+[connection signal="pressed" from="Control/CreditsMenu/VBoxContainer/Back" to="Control/MainMenu" method="show"]
+[connection signal="pressed" from="Control/CreditsMenu/VBoxContainer/Back" to="Control/CreditsMenu" method="hide"]
+[connection signal="pressed" from="Control/CreditsMenu/VBoxContainer/Back" to="Control/MainMenu" method="set_mouse_filter" binds= [1]]
+[connection signal="pressed" from="Control/CreditsMenu/VBoxContainer/Back" to="Control/CreditsMenu" method="set_mouse_filter" binds= [0]]
+[connection signal="pressed" from="Control/SettingsMenu/VBoxContainer/Back" to="Control/MainMenu" method="show"]
+[connection signal="pressed" from="Control/SettingsMenu/VBoxContainer/Back" to="Control/SettingsMenu" method="hide"]
+[connection signal="pressed" from="Control/SettingsMenu/VBoxContainer/Back" to="Control/MainMenu" method="set_mouse_filter" binds= [1]]
+[connection signal="pressed" from="Control/SettingsMenu/VBoxContainer/Back" to="Control/SettingsMenu" method="set_mouse_filter" binds= [0]]
