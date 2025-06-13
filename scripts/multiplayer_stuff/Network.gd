@@ -109,4 +109,4 @@ func _return_to_main_menu() -> void:
 
 	_cleanup_network()
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	get_tree().change_scene_to_file("res://scenes/menus/main_menu.tscn")
+	get_tree().change_scene_to_file("res://scenes/menus/MainMenu.tscn")

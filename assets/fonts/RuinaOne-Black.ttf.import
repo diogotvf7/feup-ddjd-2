@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://b44dr1jdh0n8j"
-path="res://.godot/imported/RuinaOne-Black.ttf-b06498fabfba5fd09214f0d3ff3945f8.fontdata"
+path="res://.godot/imported/RuinaOne-Black.ttf-183eb262c0f371a915c805480ef9b8f3.fontdata"
 
 [deps]
 
-source_file="res://assets/RuinaOne-Black.ttf"
-dest_files=["res://.godot/imported/RuinaOne-Black.ttf-b06498fabfba5fd09214f0d3ff3945f8.fontdata"]
+source_file="res://assets/fonts/RuinaOne-Black.ttf"
+dest_files=["res://.godot/imported/RuinaOne-Black.ttf-183eb262c0f371a915c805480ef9b8f3.fontdata"]
 
 [params]
 

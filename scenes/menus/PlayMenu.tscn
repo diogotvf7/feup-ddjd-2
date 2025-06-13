@@ -1,0 +1,361 @@
+[gd_scene load_steps=27 format=3 uid="uid://cosdbr6kyumdr"]
+
+[ext_resource type="Script" uid="uid://die6se81jp41q" path="res://scripts/menus/PlayMenu.gd" id="1_6lkqc"]
+[ext_resource type="Texture2D" uid="uid://dlw4uu7wjo5id" path="res://assets/images/play_backsplash.png" id="1_ixn57"]
+[ext_resource type="PackedScene" uid="uid://dl825iw012chg" path="res://scenes/misc/hide_menu.tscn" id="3_f0kx2"]
+[ext_resource type="Theme" uid="uid://bcmb3cg8eegje" path="res://assets/styles/simple_button_white.tres" id="3_m5jno"]
+[ext_resource type="Theme" uid="uid://c6s3bo25ouvxc" path="res://assets/styles/simple_destructive_button.tres" id="4_h2jdm"]
+[ext_resource type="PackedScene" uid="uid://buv4a23cpmqds" path="res://scenes/misc/show_menu.tscn" id="4_m5jno"]
+[ext_resource type="FontFile" uid="uid://b44dr1jdh0n8j" path="res://assets/fonts/RuinaOne-Black.ttf" id="4_push2"]
+
+[sub_resource type="Theme" id="Theme_push2"]
+default_font = ExtResource("4_push2")
+default_font_size = 30
+Button/colors/font_hover_color = Color(0.934814, 0.838928, 3.85046e-07, 1)
+Button/fonts/font = ExtResource("4_push2")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f0kx2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_m5jno"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_push2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h2jdm"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w4ojg"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1vy8w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_81e12"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_a3w2l"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cwphc"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8fs1m"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7pdu7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_w4ojg"]
+font = ExtResource("4_push2")
+font_size = 30
+
+[sub_resource type="LabelSettings" id="LabelSettings_1vy8w"]
+font = ExtResource("4_push2")
+
+[sub_resource type="LabelSettings" id="LabelSettings_81e12"]
+font = ExtResource("4_push2")
+
+[sub_resource type="LabelSettings" id="LabelSettings_a3w2l"]
+font = ExtResource("4_push2")
+
+[sub_resource type="LabelSettings" id="LabelSettings_cwphc"]
+font = ExtResource("4_push2")
+
+[sub_resource type="LabelSettings" id="LabelSettings_8fs1m"]
+font = ExtResource("4_push2")
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_7pdu7"]
+font = ExtResource("4_push2")
+font_size = 25
+
+[node name="PlayMenu" type="CanvasLayer"]
+
+[node name="PlayMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_6lkqc")
+
+[node name="PlayBacksplash" type="Sprite2D" parent="PlayMenu"]
+position = Vector2(576, 346.5)
+scale = Vector2(0.75, 0.676758)
+texture = ExtResource("1_ixn57")
+
+[node name="HostStuff" type="Control" parent="PlayMenu"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CreateIP" type="LineEdit" parent="PlayMenu/HostStuff"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 132.0
+offset_top = 225.0
+offset_right = 437.0
+offset_bottom = 256.0
+size_flags_horizontal = 0
+theme_override_fonts/font = ExtResource("4_push2")
+placeholder_text = "IP Adress + Port"
+
+[node name="Create Game" type="Button" parent="PlayMenu/HostStuff"]
+layout_mode = 2
+offset_left = 448.0
+offset_top = 226.0
+offset_right = 622.0
+offset_bottom = 256.0
+size_flags_horizontal = 0
+theme = SubResource("Theme_push2")
+theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f0kx2")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_m5jno")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_push2")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_h2jdm")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_w4ojg")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_1vy8w")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_81e12")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_a3w2l")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_cwphc")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_8fs1m")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7pdu7")
+text = "Create Game"
+
+[node name="StartGame" type="Button" parent="PlayMenu/HostStuff"]
+unique_name_in_owner = true
+layout_mode = 2
+offset_left = 137.0
+offset_top = 492.0
+offset_right = 296.0
+offset_bottom = 522.0
+size_flags_horizontal = 0
+theme = SubResource("Theme_push2")
+theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f0kx2")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_m5jno")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_push2")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_h2jdm")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_w4ojg")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_1vy8w")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_81e12")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_a3w2l")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_cwphc")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_8fs1m")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7pdu7")
+disabled = true
+text = "Start Game"
+
+[node name="Lobby" type="Control" parent="PlayMenu/HostStuff"]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Lobby" type="Label" parent="PlayMenu/HostStuff/Lobby"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 285.0
+offset_right = 215.0
+offset_bottom = 315.0
+text = "Lobby"
+label_settings = SubResource("LabelSettings_w4ojg")
+
+[node name="CloseLobby" type="Button" parent="PlayMenu/HostStuff/Lobby"]
+layout_mode = 0
+offset_left = 503.0
+offset_top = 283.0
+offset_right = 625.0
+offset_bottom = 321.0
+theme = ExtResource("4_h2jdm")
+text = "Close lobby"
+flat = true
+
+[node name="Players" type="GridContainer" parent="PlayMenu/HostStuff/Lobby"]
+layout_direction = 2
+layout_mode = 1
+offset_left = 132.0
+offset_top = 323.0
+offset_right = 626.0
+offset_bottom = 447.0
+columns = 2
+
+[node name="SelfBox" type="CenterContainer" parent="PlayMenu/HostStuff/Lobby/Players"]
+layout_mode = 2
+
+[node name="Backgroung" type="ColorRect" parent="PlayMenu/HostStuff/Lobby/Players/SelfBox"]
+custom_minimum_size = Vector2(245, 60)
+layout_mode = 2
+color = Color(0.282353, 0.447059, 0.223529, 1)
+
+[node name="Label" type="Label" parent="PlayMenu/HostStuff/Lobby/Players/SelfBox"]
+layout_mode = 2
+text = "You - Ready"
+label_settings = SubResource("LabelSettings_1vy8w")
+
+[node name="Player2" type="CenterContainer" parent="PlayMenu/HostStuff/Lobby/Players"]
+layout_mode = 2
+
+[node name="Backgroung" type="ColorRect" parent="PlayMenu/HostStuff/Lobby/Players/Player2"]
+custom_minimum_size = Vector2(245, 60)
+layout_mode = 2
+color = Color(0.643137, 0.196078, 0.0862745, 1)
+
+[node name="Label" type="Label" parent="PlayMenu/HostStuff/Lobby/Players/Player2"]
+layout_mode = 2
+text = "Player 2 - Not Connected"
+label_settings = SubResource("LabelSettings_81e12")
+
+[node name="Player3" type="CenterContainer" parent="PlayMenu/HostStuff/Lobby/Players"]
+layout_mode = 2
+
+[node name="Backgroung" type="ColorRect" parent="PlayMenu/HostStuff/Lobby/Players/Player3"]
+custom_minimum_size = Vector2(245, 60)
+layout_mode = 2
+color = Color(0.643137, 0.196078, 0.0862745, 1)
+
+[node name="Label" type="Label" parent="PlayMenu/HostStuff/Lobby/Players/Player3"]
+layout_mode = 2
+text = "Player 4 - Not Connec ted"
+label_settings = SubResource("LabelSettings_a3w2l")
+
+[node name="Player4" type="CenterContainer" parent="PlayMenu/HostStuff/Lobby/Players"]
+layout_mode = 2
+
+[node name="Backgroung" type="ColorRect" parent="PlayMenu/HostStuff/Lobby/Players/Player4"]
+custom_minimum_size = Vector2(245, 60)
+layout_mode = 2
+color = Color(0.643137, 0.196078, 0.0862745, 1)
+
+[node name="Label" type="Label" parent="PlayMenu/HostStuff/Lobby/Players/Player4"]
+layout_mode = 2
+text = "Player 5 - Not Connected"
+label_settings = SubResource("LabelSettings_cwphc")
+
+[node name="JoinStuff" type="Control" parent="PlayMenu"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Join Game" type="Button" parent="PlayMenu/JoinStuff"]
+layout_mode = 2
+offset_left = 450.0
+offset_top = 226.0
+offset_right = 589.0
+offset_bottom = 256.0
+size_flags_horizontal = 0
+theme = SubResource("Theme_push2")
+theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f0kx2")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_m5jno")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_push2")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_h2jdm")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_w4ojg")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_1vy8w")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_81e12")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_a3w2l")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_cwphc")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_8fs1m")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_7pdu7")
+text = "Join Game"
+
+[node name="IP" type="LineEdit" parent="PlayMenu/JoinStuff"]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 225.0
+offset_right = 438.0
+offset_bottom = 256.0
+theme_override_fonts/font = ExtResource("4_push2")
+placeholder_text = "IP Address + Port"
+
+[node name="Success" type="Control" parent="PlayMenu/JoinStuff"]
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SuccessText" type="Label" parent="PlayMenu/JoinStuff/Success"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 294.0
+offset_right = 713.0
+offset_bottom = 441.0
+text = "Your in! Get your beer ready and load your
+guns, them aliens are comin'
+
+Waiting for the lobby owner to start 
+the game..."
+label_settings = SubResource("LabelSettings_8fs1m")
+
+[node name="Button" type="Button" parent="PlayMenu/JoinStuff/Success"]
+layout_mode = 0
+offset_left = 132.0
+offset_top = 463.0
+offset_right = 420.0
+offset_bottom = 494.0
+theme = ExtResource("4_h2jdm")
+text = "Click here to leave the lobby"
+flat = true
+
+[node name="Failure" type="Label" parent="PlayMenu/JoinStuff"]
+visible = false
+layout_mode = 0
+offset_left = 134.0
+offset_top = 294.0
+offset_right = 549.0
+offset_bottom = 321.0
+text = "Oops, that IP doesn't seem right...
+No matching lobby was found"
+label_settings = SubResource("LabelSettings_7pdu7")
+
+[node name="HideTimout" type="Timer" parent="PlayMenu/JoinStuff/Failure"]
+
+[node name="Back" type="Button" parent="PlayMenu"]
+layout_mode = 0
+offset_left = 134.0
+offset_top = 532.0
+offset_right = 208.0
+offset_bottom = 570.0
+theme = ExtResource("3_m5jno")
+text = "Back"
+flat = true
+
+[node name="HostGame" type="Button" parent="PlayMenu"]
+layout_mode = 0
+offset_left = 119.0
+offset_top = 116.0
+offset_right = 419.0
+offset_bottom = 184.0
+theme = ExtResource("3_m5jno")
+theme_override_font_sizes/font_size = 60
+toggle_mode = true
+text = "Host game"
+flat = true
+
+[node name="JoinGame" type="Button" parent="PlayMenu"]
+layout_mode = 0
+offset_left = 471.0
+offset_top = 117.0
+offset_right = 771.0
+offset_bottom = 185.0
+theme = ExtResource("3_m5jno")
+theme_override_font_sizes/font_size = 60
+text = "Join Game"
+flat = true
+
+[node name="HideMenu" parent="." instance=ExtResource("3_f0kx2")]
+visible = false
+offset_left = -483.0
+offset_top = -448.0
+offset_right = 918.0
+offset_bottom = 985.0
+
+[node name="HideTimer" type="Timer" parent="HideMenu"]
+
+[node name="ShowMenu" parent="." instance=ExtResource("4_m5jno")]
+visible = false
+offset_left = -483.0
+offset_top = -448.0
+offset_right = 918.0
+offset_bottom = 985.0
+
+[connection signal="button_down" from="PlayMenu/HostStuff/Create Game" to="PlayMenu" method="_on_create_game_button_down"]
+[connection signal="button_down" from="PlayMenu/HostStuff/StartGame" to="PlayMenu" method="_on_start_game_button_down"]
+[connection signal="button_down" from="PlayMenu/JoinStuff/Join Game" to="PlayMenu" method="_on_join_game_button_down"]
+[connection signal="pressed" from="PlayMenu/Back" to="PlayMenu" method="_on_back_pressed"]
+[connection signal="pressed" from="PlayMenu/HostGame" to="PlayMenu" method="_on_host_game_pressed"]
+[connection signal="pressed" from="PlayMenu/JoinGame" to="PlayMenu" method="_on_join_game_pressed"]
+[connection signal="timeout" from="HideMenu/HideTimer" to="PlayMenu" method="_on_hide_timer_timeout"]

@@ -1,0 +1,8 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cpy5o223cev16"]
+
+[ext_resource type="FontFile" uid="uid://b44dr1jdh0n8j" path="res://assets/fonts/RuinaOne-Black.ttf" id="1_nnk5u"]
+
+[resource]
+default_font = ExtResource("1_nnk5u")
+default_font_size = 30
+Button/colors/font_color = Color(0.152941, 0.0862745, 0.0352941, 1)

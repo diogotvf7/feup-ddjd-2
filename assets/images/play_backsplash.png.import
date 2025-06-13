@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dpvgld8u28kef"
-path="res://.godot/imported/menu_backsplash.png-43ff503dcd8359a280b7d6e6e4220a06.ctex"
+uid="uid://dlw4uu7wjo5id"
+path="res://.godot/imported/play_backsplash.png-2130d1779d598a99ea5b168bcc37bcd3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/menu_backsplash.png"
-dest_files=["res://.godot/imported/menu_backsplash.png-43ff503dcd8359a280b7d6e6e4220a06.ctex"]
+source_file="res://assets/images/play_backsplash.png"
+dest_files=["res://.godot/imported/play_backsplash.png-2130d1779d598a99ea5b168bcc37bcd3.ctex"]
 
 [params]
 
