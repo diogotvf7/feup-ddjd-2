@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://bm8hdq24o5tw8"]
+[gd_scene load_steps=10 format=3 uid="uid://bm8hdq24o5tw8"]
 
 [ext_resource type="Script" uid="uid://lsfwyi2b4bpb" path="res://scripts/multiplayer_stuff/SceneManager.gd" id="1_cppub"]
 [ext_resource type="PackedScene" uid="uid://dy3ajs4ctabub" path="res://scenes/player/testPlayer.tscn" id="2_mh6lb"]
 [ext_resource type="PackedScene" uid="uid://3qbxxs2v0l30" path="res://scenes/world/testBox.tscn" id="3_stmqc"]
 [ext_resource type="PackedScene" uid="uid://chsqjqpehxggq" path="res://scenes/menus/pause_menu.tscn" id="4_dxgx6"]
+[ext_resource type="PackedScene" uid="uid://cowfsbonrvr7h" path="res://scenes/enemies/enemy.tscn" id="5_mh6lb"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_haeiw"]
 sky_horizon_color = Color(0.662243, 0.671743, 0.686743, 1)
@@ -17,6 +18,10 @@ background_mode = 2
 sky = SubResource("Sky_b5kf5")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="NavigationMesh" id="NavigationMesh_cppub"]
+vertices = PackedVector3Array(-7, 0.49, -1.25, -5.5, 0.49, -1.25, -5.25, 0.49, -1.75, -7, 0.49, -7, 0, 0.49, -5.25, 1, 0.49, -5.75, 1.25, 0.49, -7, -3.25, 0.49, -1.25, 0.5, 0.49, -3.5, 0, 0.49, -4, -3.5, 0.49, -1.75, 2.25, 0.49, -5.5, 2.75, 0.49, -2, 2.75, 0.49, 1.25, 3.25, 0.49, 1.25, 4, 0.49, -2.75, 4, 0.49, 2.5, 7, 0.49, 2.5, 7, 0.49, -7, 4, 0.49, -4, -2.25, 0.49, 4.75, -2.25, 0.49, 5.5, 0, 0.49, 4.25, -3.25, 0.49, 2.25, -4.5, 0.49, 2.75, 0, 0.49, 3.25, 1.75, 0.49, 1.5, 0.75, 0.49, 5.25, 1.75, 0.49, 5.25, -3.25, 0.49, 6.75, 7, 0.49, 7, -5.25, 0.49, 2.5, -6.25, 0.49, 3.25, -7, 0.49, 7, -4, 0.49, 6.75, -6.25, 0.49, 4.5, 1.5, 2.49, 4, 2.75, 2.49, 2.75, 2.25, 2.49, 2.5, 1, 2.49, 3.75, -5.25, 2.49, 3.75, -3.5, 2.49, 5.5, -4.75, 2.49, 3.75)
+polygons = [PackedInt32Array(1, 0, 2), PackedInt32Array(2, 0, 3), PackedInt32Array(6, 5, 4), PackedInt32Array(10, 9, 7), PackedInt32Array(7, 9, 8), PackedInt32Array(10, 2, 4), PackedInt32Array(4, 2, 6), PackedInt32Array(6, 2, 3), PackedInt32Array(4, 9, 10), PackedInt32Array(11, 5, 6), PackedInt32Array(13, 12, 14), PackedInt32Array(14, 12, 15), PackedInt32Array(16, 14, 17), PackedInt32Array(17, 14, 15), PackedInt32Array(17, 15, 18), PackedInt32Array(15, 19, 18), PackedInt32Array(11, 6, 19), PackedInt32Array(19, 6, 18), PackedInt32Array(22, 21, 20), PackedInt32Array(22, 20, 25), PackedInt32Array(25, 20, 23), PackedInt32Array(23, 20, 24), PackedInt32Array(12, 13, 26), PackedInt32Array(25, 23, 26), PackedInt32Array(26, 23, 7), PackedInt32Array(26, 7, 8), PackedInt32Array(26, 8, 12), PackedInt32Array(21, 22, 27), PackedInt32Array(27, 28, 21), PackedInt32Array(21, 28, 29), PackedInt32Array(29, 28, 30), PackedInt32Array(1, 31, 0), PackedInt32Array(0, 31, 32), PackedInt32Array(34, 29, 33), PackedInt32Array(33, 29, 30), PackedInt32Array(35, 33, 32), PackedInt32Array(32, 33, 0), PackedInt32Array(16, 17, 28), PackedInt32Array(28, 17, 30), PackedInt32Array(33, 35, 34), PackedInt32Array(39, 38, 36), PackedInt32Array(36, 38, 37), PackedInt32Array(42, 41, 40)]
 
 [node name="GameScene" type="Node3D"]
 script = ExtResource("1_cppub")
@@ -46,9 +51,38 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.54092, 0)
 [node name="3" type="Node3D" parent="PlayerSpawnLocations" groups=["PlayerSpawnPoint"]]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.68984, 0, 0)
 
-[node name="CSGBox3D" type="CSGBox3D" parent="."]
+[node name="PauseMenu" parent="." instance=ExtResource("4_dxgx6")]
+visible = false
+
+[node name="World" type="NavigationRegion3D" parent="."]
+navigation_mesh = SubResource("NavigationMesh_cppub")
+
+[node name="CSGCombiner3D" type="CSGCombiner3D" parent="World"]
+use_collision = true
+
+[node name="CSGBox3D" type="CSGBox3D" parent="World/CSGCombiner3D"]
 use_collision = true
 size = Vector3(15, 0.02, 15)
 
-[node name="PauseMenu" parent="." instance=ExtResource("4_dxgx6")]
-visible = false
+[node name="CSGBox3D2" type="CSGBox3D" parent="World/CSGCombiner3D"]
+transform = Transform3D(0.799087, 0, -0.601215, 0, 1, 0, 0.601215, 0, 0.799087, 2, 0.995395, -3.94036)
+use_collision = true
+size = Vector3(3, 2, 1)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="World/CSGCombiner3D"]
+transform = Transform3D(-0.718175, 0, -0.695863, 0, 1, 0, 0.695863, 0, -0.718175, 2, 0.995395, 3.18405)
+use_collision = true
+size = Vector3(3, 2, 1)
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="World/CSGCombiner3D"]
+transform = Transform3D(-0.714509, 0, 0.699626, 0, 1, 0, -0.699626, 0, -0.714509, -4.24424, 0.995395, 4.594)
+use_collision = true
+size = Vector3(3, 2, 1)
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="World/CSGCombiner3D"]
+transform = Transform3D(-0.046566, 0, 0.998915, 0, 1, 0, -0.998915, 0, -0.046566, -4.42487, 0.495395, 0.284927)
+use_collision = true
+size = Vector3(3, 1, 1)
+
+[node name="Enemy" parent="." instance=ExtResource("5_mh6lb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.05804, 0.981923, 0)
