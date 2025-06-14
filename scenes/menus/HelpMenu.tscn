@@ -1,0 +1,89 @@
+[gd_scene load_steps=9 format=3 uid="uid://24lapcnh165"]
+
+[ext_resource type="Script" uid="uid://bivy2kqfmemip" path="res://scripts/menus/HelpMenu.gd" id="1_bmefa"]
+[ext_resource type="Texture2D" uid="uid://ddlxeav3jtiei" path="res://assets/images/help_backsplash.png" id="1_tark4"]
+[ext_resource type="Texture2D" uid="uid://fx4220bwhysp" path="res://assets/images/alien_wack.png" id="2_lrbc3"]
+[ext_resource type="FontFile" uid="uid://b44dr1jdh0n8j" path="res://assets/fonts/RuinaOne-Black.ttf" id="3_aajtd"]
+[ext_resource type="Theme" uid="uid://cabpteda0w4nv" path="res://assets/styles/font_style.tres" id="4_bmefa"]
+[ext_resource type="Theme" uid="uid://bcmb3cg8eegje" path="res://assets/styles/simple_button_white.tres" id="5_f12w4"]
+[ext_resource type="PackedScene" uid="uid://dl825iw012chg" path="res://scenes/misc/hide_menu.tscn" id="7_f12w4"]
+[ext_resource type="PackedScene" uid="uid://buv4a23cpmqds" path="res://scenes/misc/show_menu.tscn" id="8_sk0p4"]
+
+[node name="HelpMenu" type="CanvasLayer"]
+
+[node name="HelpMenuControl" type="Control" parent="."]
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_bmefa")
+
+[node name="HelpBacksplash" type="Sprite2D" parent="HelpMenuControl"]
+position = Vector2(574, 349)
+scale = Vector2(0.74707, 0.74707)
+texture = ExtResource("1_tark4")
+
+[node name="AlienWack" type="Sprite2D" parent="HelpMenuControl"]
+position = Vector2(842, 407)
+rotation = 0.26529
+scale = Vector2(0.126465, 0.126465)
+texture = ExtResource("2_lrbc3")
+
+[node name="Title" type="Label" parent="HelpMenuControl"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 168.0
+offset_right = 719.0
+offset_bottom = 203.0
+theme_override_fonts/font = ExtResource("3_aajtd")
+theme_override_font_sizes/font_size = 35
+text = "What to know to play the game"
+
+[node name="Controls" type="Label" parent="HelpMenuControl"]
+layout_mode = 0
+offset_left = 196.0
+offset_top = 222.0
+offset_right = 236.0
+offset_bottom = 252.0
+theme = ExtResource("4_bmefa")
+text = "Controls? Easy peasy, in no time you'll be a pro playing this. 
+use \"w,a,s,d\" to move, \"space\" to jump, \"1-5\" to cycle trhough
+your inventory and the \"mouse\" to point and blast some 
+green alines. oh, and \"e\" to collect stuff and save cows"
+
+[node name="What this be" type="Label" parent="HelpMenuControl"]
+layout_mode = 0
+offset_left = 198.0
+offset_top = 336.0
+offset_right = 830.0
+offset_bottom = 517.0
+theme = ExtResource("4_bmefa")
+text = "But what in the tarnation is this game, you might ask?
+do you know l4d2? if not, well, to bad, cuz' I don't have time
+to explain it, them aliens are comin'. anyways, imagine that 
+game concept, but instead of zombies you have aliens
+ hunting you and stealing your cows. pretty dope right?
+
+your goal is to save all the cows from being stolen by those
+green little bastards and reach the tractor to escape with them!"
+
+[node name="Back" type="Button" parent="HelpMenuControl"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 602.0
+offset_right = 104.0
+offset_bottom = 640.0
+theme = ExtResource("5_f12w4")
+text = "Back
+"
+flat = true
+
+[node name="HideMenu" parent="." instance=ExtResource("7_f12w4")]
+
+[node name="HideTimer" type="Timer" parent="HideMenu"]
+
+[node name="ShowMenu" parent="." instance=ExtResource("8_sk0p4")]
+
+[connection signal="pressed" from="HelpMenuControl/Back" to="HelpMenuControl" method="_on_back_pressed"]
+[connection signal="timeout" from="HideMenu/HideTimer" to="HelpMenuControl" method="_on_hide_timer_timeout"]

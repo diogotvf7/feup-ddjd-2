@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dy3ajs4ctabub"]
+[gd_scene load_steps=6 format=3 uid="uid://dy3ajs4ctabub"]
 
 [ext_resource type="Script" uid="uid://7mrs8xoe4hcb" path="res://scripts/player/test_player.gd" id="1_bjb7f"]
+[ext_resource type="PackedScene" uid="uid://wvwvbu8pqwn7" path="res://scenes/components/health_component.tscn" id="2_jykre"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_407k3"]
 
@@ -33,3 +34,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.74097, 0)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_bjb7f")
+
+[node name="HealthComponent" parent="." instance=ExtResource("2_jykre")]
+
+[node name="HealthLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0

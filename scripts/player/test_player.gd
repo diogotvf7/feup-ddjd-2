@@ -15,6 +15,8 @@ const FOV_CHANGE = 1.5
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
+@onready var health_label: Label = $HealthLabel
+@onready var health_component: Node = $HealthComponent
 
 var syncPos = Vector3.ZERO
 var is_paused := false
@@ -31,7 +33,14 @@ func _ready() -> void:
 	camera.current = is_local
 	if !is_local:
 		camera.process_mode = Node.PROCESS_MODE_DISABLED
+		health_label.visible = false
+	else:
+		health_label.visible = true
 
+
+
+func _process(delta: float) -> void:
+	health_label.text = str(health_component.health)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if is_paused:
@@ -93,3 +102,6 @@ func _headbob(time) -> Vector3:
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
+
+func on_death() -> void:
+	get_tree().quit()

@@ -1,0 +1,9 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://bcmb3cg8eegje"]
+
+[ext_resource type="FontFile" uid="uid://b44dr1jdh0n8j" path="res://assets/fonts/RuinaOne-Black.ttf" id="1_hnpii"]
+
+[resource]
+default_font = ExtResource("1_hnpii")
+default_font_size = 30
+Button/colors/font_color = Color(1, 1, 1, 1)
+Button/colors/font_hover_color = Color(0.840041, 0.784804, 1.92523e-06, 1)

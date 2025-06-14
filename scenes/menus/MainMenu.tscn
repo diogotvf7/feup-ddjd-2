@@ -1,7 +1,16 @@
-[gd_scene load_steps=17 format=3 uid="uid://dkpuvhbyw8cro"]
+[gd_scene load_steps=19 format=3 uid="uid://bj5itufolpl6d"]
 
-[ext_resource type="PackedScene" uid="uid://3qbxxs2v0l30" path="res://scenes/world/testBox.tscn" id="1_ovrgc"]
-[ext_resource type="Script" uid="uid://dsux2sfmpdiob" path="res://scripts/menus/MainMenu.gd" id="2_2o76q"]
+[ext_resource type="Script" uid="uid://dsux2sfmpdiob" path="res://scripts/menus/MainMenu.gd" id="1_cty7a"]
+[ext_resource type="Texture2D" uid="uid://dpvgld8u28kef" path="res://assets/images/menu_backsplash.png" id="2_147xw"]
+[ext_resource type="FontFile" uid="uid://b44dr1jdh0n8j" path="res://assets/fonts/RuinaOne-Black.ttf" id="3_41ciy"]
+[ext_resource type="Theme" uid="uid://cpy5o223cev16" path="res://assets/styles/simple_button.tres" id="4_krskw"]
+[ext_resource type="PackedScene" uid="uid://dl825iw012chg" path="res://scenes/misc/hide_menu.tscn" id="5_727om"]
+[ext_resource type="PackedScene" uid="uid://buv4a23cpmqds" path="res://scenes/misc/show_menu.tscn" id="6_il8nq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_6bivr"]
+font = ExtResource("3_41ciy")
+font_size = 44
+font_color = Color(0.152941, 0.0862745, 0.0352941, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7vrkn"]
 
@@ -25,65 +34,7 @@
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_j5v2v"]
 
-[sub_resource type="Animation" id="Animation_w44g7"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Background/SubViewportContainer/SubViewport/Camera3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector3(-0.809489, 0.786827, 2)]
-}
-
-[sub_resource type="Animation" id="Animation_iotk1"]
-resource_name = "camera_animation"
-length = 4.0
-loop_mode = 1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Background/SubViewportContainer/SubViewport/Camera3D:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1, 2, 3, 4),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector3(-0.809489, 0.786827, 2), Vector3(-0.600832, 0.786827, 2), Vector3(-0.84035, 0.901257, 2), Vector3(-0.581947, 0.634342, 2), Vector3(-0.809, 0.787, 2)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_cm266"]
-_data = {
-&"RESET": SubResource("Animation_w44g7"),
-&"camera_animation": SubResource("Animation_iotk1")
-}
-
 [node name="MainMenu" type="CanvasLayer"]
-
-[node name="Background" type="Node3D" parent="."]
-
-[node name="box" parent="Background" instance=ExtResource("1_ovrgc")]
-
-[node name="SubViewportContainer" type="SubViewportContainer" parent="Background"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="SubViewport" type="SubViewport" parent="Background/SubViewportContainer"]
-handle_input_locally = false
-msaa_3d = 3
-size = Vector2i(1152, 648)
-render_target_update_mode = 4
-
-[node name="Camera3D" type="Camera3D" parent="Background/SubViewportContainer/SubViewport"]
-transform = Transform3D(0.999945, -0.00984237, -0.0037262, 0.0104694, 0.966358, 0.256987, 0.00107149, -0.257012, 0.966408, -0.809489, 0.786827, 2)
 
 [node name="Control" type="Control" parent="."]
 layout_mode = 3
@@ -92,41 +43,41 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("2_2o76q")
+script = ExtResource("1_cty7a")
 
-[node name="MainMenu" type="MarginContainer" parent="Control"]
+[node name="MenuBacksplash" type="Sprite2D" parent="Control"]
+position = Vector2(575.75, 324)
+scale = Vector2(0.750326, 0.632813)
+texture = ExtResource("2_147xw")
+
+[node name="MainMenu" type="Control" parent="Control"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_left = 64
-theme_override_constants/margin_top = 80
-theme_override_constants/margin_right = 64
-theme_override_constants/margin_bottom = 80
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Control/MainMenu"]
+[node name="GameTitle" type="Label" parent="Control/MainMenu"]
 layout_mode = 2
-
-[node name="GameTitle" type="Label" parent="Control/MainMenu/VBoxContainer"]
-layout_mode = 2
+offset_left = 537.0
+offset_top = 206.0
+offset_right = 960.0
+offset_bottom = 251.0
+rotation = 0.0174533
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 62
 text = "No Cows Left Behind"
+label_settings = SubResource("LabelSettings_6bivr")
 
-[node name="MarginContainer" type="MarginContainer" parent="Control/MainMenu/VBoxContainer"]
-custom_minimum_size = Vector2(0, 80)
-layout_mode = 2
-
-[node name="LineEdit" type="LineEdit" parent="Control/MainMenu/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
+[node name="Play" type="Button" parent="Control/MainMenu"]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 265.0
+offset_right = 604.0
+offset_bottom = 295.0
 size_flags_horizontal = 0
-
-[node name="Create Game" type="Button" parent="Control/MainMenu/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
+theme = ExtResource("4_krskw")
 theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
 theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
@@ -140,11 +91,17 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dy7ct")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_0o4t1")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0k4wn")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_j5v2v")
-text = "Create Game"
+text = "Play
+"
 
-[node name="Join Game" type="Button" parent="Control/MainMenu/VBoxContainer"]
-layout_mode = 2
+[node name="Help" type="Button" parent="Control/MainMenu"]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 304.0
+offset_right = 634.0
+offset_bottom = 334.0
 size_flags_horizontal = 0
+theme = ExtResource("4_krskw")
 theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
 theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
@@ -158,49 +115,16 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dy7ct")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_0o4t1")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0k4wn")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_j5v2v")
-text = "Join Game"
+text = "Help"
 
-[node name="StartGame" type="Button" parent="Control/MainMenu/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
+[node name="Credits" type="Button" parent="Control/MainMenu"]
+layout_mode = 0
+offset_left = 542.0
+offset_top = 341.0
+offset_right = 647.0
+offset_bottom = 371.0
 size_flags_horizontal = 0
-theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
-theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fu7sn")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_jix8l")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_glbon")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_nlkkf")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_qe12f")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_8qtwp")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dy7ct")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_0o4t1")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0k4wn")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_j5v2v")
-disabled = true
-text = "Start Game"
-
-[node name="Settings" type="Button" parent="Control/MainMenu/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
-theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
-theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_fu7sn")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_jix8l")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_glbon")
-theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_nlkkf")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_qe12f")
-theme_override_styles/hover = SubResource("StyleBoxEmpty_8qtwp")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dy7ct")
-theme_override_styles/pressed = SubResource("StyleBoxEmpty_0o4t1")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0k4wn")
-theme_override_styles/normal = SubResource("StyleBoxEmpty_j5v2v")
-text = "Settings"
-
-[node name="Credits" type="Button" parent="Control/MainMenu/VBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
+theme = ExtResource("4_krskw")
 theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
 theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
@@ -216,10 +140,14 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0k4wn")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_j5v2v")
 text = "Credits"
 
-[node name="Exit" type="Button" parent="Control/MainMenu/VBoxContainer"]
-unique_name_in_owner = true
-layout_mode = 2
+[node name="Exit" type="Button" parent="Control/MainMenu"]
+layout_mode = 0
+offset_left = 543.0
+offset_top = 376.0
+offset_right = 602.0
+offset_bottom = 406.0
 size_flags_horizontal = 0
+theme = ExtResource("4_krskw")
 theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
 theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7vrkn")
@@ -389,29 +317,32 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0k4wn")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_j5v2v")
 text = "Back"
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-&"": SubResource("AnimationLibrary_cm266")
-}
-autoplay = "camera_animation"
-speed_scale = 0.2
+[node name="HideMenu" parent="." instance=ExtResource("5_727om")]
+visible = false
+offset_left = -483.0
+offset_top = -448.0
+offset_right = 918.0
+offset_bottom = 985.0
 
-[connection signal="button_down" from="Control/MainMenu/VBoxContainer/Create Game" to="Control" method="_on_create_game_button_down"]
-[connection signal="button_down" from="Control/MainMenu/VBoxContainer/Join Game" to="Control" method="_on_join_game_button_down"]
-[connection signal="button_down" from="Control/MainMenu/VBoxContainer/StartGame" to="Control" method="_on_start_game_button_down"]
-[connection signal="pressed" from="Control/MainMenu/VBoxContainer/Settings" to="Control/MainMenu" method="hide"]
-[connection signal="pressed" from="Control/MainMenu/VBoxContainer/Settings" to="Control/SettingsMenu" method="show"]
-[connection signal="pressed" from="Control/MainMenu/VBoxContainer/Settings" to="Control/MainMenu" method="set_mouse_filter" binds= [0]]
-[connection signal="pressed" from="Control/MainMenu/VBoxContainer/Settings" to="Control/SettingsMenu" method="set_mouse_filter" binds= [1]]
-[connection signal="pressed" from="Control/MainMenu/VBoxContainer/Credits" to="Control/MainMenu" method="hide"]
-[connection signal="pressed" from="Control/MainMenu/VBoxContainer/Credits" to="Control/CreditsMenu" method="show"]
-[connection signal="pressed" from="Control/MainMenu/VBoxContainer/Credits" to="Control" method="set_mouse_filter" binds= [0]]
-[connection signal="pressed" from="Control/MainMenu/VBoxContainer/Credits" to="Control/CreditsMenu" method="set_mouse_filter" binds= [1]]
+[node name="HideTimer" type="Timer" parent="HideMenu"]
+
+[node name="ShowMenu" parent="." instance=ExtResource("6_il8nq")]
+visible = false
+offset_left = -483.0
+offset_top = -448.0
+offset_right = 918.0
+offset_bottom = 985.0
+
+[connection signal="pressed" from="Control/MainMenu/Play" to="Control" method="_on_play_pressed"]
+[connection signal="pressed" from="Control/MainMenu/Help" to="Control" method="_on_help_pressed"]
+[connection signal="pressed" from="Control/MainMenu/Credits" to="Control" method="_on_credits_pressed"]
+[connection signal="pressed" from="Control/MainMenu/Exit" to="Control" method="_on_exit_pressed"]
 [connection signal="pressed" from="Control/CreditsMenu/VBoxContainer/Back" to="Control/MainMenu" method="show"]
+[connection signal="pressed" from="Control/CreditsMenu/VBoxContainer/Back" to="Control/MainMenu" method="set_mouse_filter"]
 [connection signal="pressed" from="Control/CreditsMenu/VBoxContainer/Back" to="Control/CreditsMenu" method="hide"]
-[connection signal="pressed" from="Control/CreditsMenu/VBoxContainer/Back" to="Control/MainMenu" method="set_mouse_filter" binds= [1]]
 [connection signal="pressed" from="Control/CreditsMenu/VBoxContainer/Back" to="Control/CreditsMenu" method="set_mouse_filter" binds= [0]]
 [connection signal="pressed" from="Control/SettingsMenu/VBoxContainer/Back" to="Control/MainMenu" method="show"]
+[connection signal="pressed" from="Control/SettingsMenu/VBoxContainer/Back" to="Control/MainMenu" method="set_mouse_filter"]
 [connection signal="pressed" from="Control/SettingsMenu/VBoxContainer/Back" to="Control/SettingsMenu" method="hide"]
-[connection signal="pressed" from="Control/SettingsMenu/VBoxContainer/Back" to="Control/MainMenu" method="set_mouse_filter" binds= [1]]
 [connection signal="pressed" from="Control/SettingsMenu/VBoxContainer/Back" to="Control/SettingsMenu" method="set_mouse_filter" binds= [0]]
+[connection signal="timeout" from="HideMenu/HideTimer" to="Control" method="_on_hide_timer_timeout"]
