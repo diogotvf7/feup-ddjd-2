@@ -94,11 +94,11 @@ theme_override_styles/normal = SubResource("StyleBoxEmpty_j5v2v")
 text = "Play
 "
 
-[node name="Settings" type="Button" parent="Control/MainMenu"]
+[node name="Help" type="Button" parent="Control/MainMenu"]
 layout_mode = 0
-offset_left = 541.0
+offset_left = 510.0
 offset_top = 304.0
-offset_right = 665.0
+offset_right = 634.0
 offset_bottom = 334.0
 size_flags_horizontal = 0
 theme = ExtResource("4_krskw")
@@ -115,7 +115,7 @@ theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_dy7ct")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_0o4t1")
 theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_0k4wn")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_j5v2v")
-text = "Settings"
+text = "Help"
 
 [node name="Credits" type="Button" parent="Control/MainMenu"]
 layout_mode = 0
@@ -334,10 +334,10 @@ offset_right = 918.0
 offset_bottom = 985.0
 
 [connection signal="pressed" from="Control/MainMenu/Play" to="Control" method="_on_play_pressed"]
-[connection signal="pressed" from="Control/MainMenu/Settings" to="Control/MainMenu" method="hide"]
-[connection signal="pressed" from="Control/MainMenu/Settings" to="Control/MainMenu" method="set_mouse_filter"]
-[connection signal="pressed" from="Control/MainMenu/Settings" to="Control/SettingsMenu" method="show"]
-[connection signal="pressed" from="Control/MainMenu/Settings" to="Control/SettingsMenu" method="set_mouse_filter" binds= [1]]
+[connection signal="pressed" from="Control/MainMenu/Help" to="Control/MainMenu" method="hide"]
+[connection signal="pressed" from="Control/MainMenu/Help" to="Control/MainMenu" method="set_mouse_filter"]
+[connection signal="pressed" from="Control/MainMenu/Help" to="Control/SettingsMenu" method="show"]
+[connection signal="pressed" from="Control/MainMenu/Help" to="Control/SettingsMenu" method="set_mouse_filter" binds= [1]]
 [connection signal="pressed" from="Control/MainMenu/Credits" to="Control/MainMenu" method="hide"]
 [connection signal="pressed" from="Control/MainMenu/Credits" to="Control/CreditsMenu" method="show"]
 [connection signal="pressed" from="Control/MainMenu/Credits" to="Control" method="set_mouse_filter" binds= [0]]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://cosdbr6kyumdr"]
+[gd_scene load_steps=28 format=3 uid="uid://cosdbr6kyumdr"]
 
 [ext_resource type="Script" uid="uid://die6se81jp41q" path="res://scripts/menus/PlayMenu.gd" id="1_6lkqc"]
 [ext_resource type="Texture2D" uid="uid://dlw4uu7wjo5id" path="res://assets/images/play_backsplash.png" id="1_ixn57"]
@@ -59,10 +59,6 @@ font = ExtResource("4_push2")
 [sub_resource type="LabelSettings" id="LabelSettings_ildda"]
 font = ExtResource("4_push2")
 font_size = 20
-
-[sub_resource type="LabelSettings" id="LabelSettings_8fs1m"]
-font = ExtResource("4_push2")
-font_size = 26
 
 [sub_resource type="LabelSettings" id="LabelSettings_7pdu7"]
 font = ExtResource("4_push2")
@@ -322,26 +318,84 @@ label_settings = SubResource("LabelSettings_ildda")
 
 [node name="FailedJoinTimer" type="Timer" parent="PlayMenu/JoinStuff/FailedJoin"]
 
-[node name="Success" type="Control" parent="PlayMenu/JoinStuff"]
+[node name="Lobby" type="Control" parent="PlayMenu/JoinStuff"]
 visible = false
+layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="SuccessText" type="Label" parent="PlayMenu/JoinStuff/Success"]
+[node name="Lobby" type="Label" parent="PlayMenu/JoinStuff/Lobby"]
 layout_mode = 0
 offset_left = 132.0
-offset_top = 294.0
-offset_right = 713.0
-offset_bottom = 441.0
-text = "Your in! Get your beer ready and load your
-guns, them aliens are comin'
+offset_top = 285.0
+offset_right = 215.0
+offset_bottom = 315.0
+text = "Lobby"
+label_settings = SubResource("LabelSettings_w4ojg")
 
-Waiting for the lobby owner to start 
-the game..."
-label_settings = SubResource("LabelSettings_8fs1m")
+[node name="Players" type="GridContainer" parent="PlayMenu/JoinStuff/Lobby"]
+layout_direction = 2
+layout_mode = 1
+offset_left = 132.0
+offset_top = 323.0
+offset_right = 626.0
+offset_bottom = 447.0
+columns = 2
 
-[node name="LeaveGame" type="Button" parent="PlayMenu/JoinStuff/Success"]
+[node name="Player1" type="CenterContainer" parent="PlayMenu/JoinStuff/Lobby/Players"]
+layout_mode = 2
+
+[node name="Background" type="ColorRect" parent="PlayMenu/JoinStuff/Lobby/Players/Player1"]
+custom_minimum_size = Vector2(245, 60)
+layout_mode = 2
+color = Color(0.643137, 0.196078, 0.0862745, 1)
+
+[node name="Label" type="Label" parent="PlayMenu/JoinStuff/Lobby/Players/Player1"]
+layout_mode = 2
+text = "You - Ready"
+label_settings = SubResource("LabelSettings_1vy8w")
+
+[node name="Player2" type="CenterContainer" parent="PlayMenu/JoinStuff/Lobby/Players"]
+layout_mode = 2
+
+[node name="Background" type="ColorRect" parent="PlayMenu/JoinStuff/Lobby/Players/Player2"]
+custom_minimum_size = Vector2(245, 60)
+layout_mode = 2
+color = Color(0.643137, 0.196078, 0.0862745, 1)
+
+[node name="Label" type="Label" parent="PlayMenu/JoinStuff/Lobby/Players/Player2"]
+layout_mode = 2
+text = "Player not connected"
+label_settings = SubResource("LabelSettings_81e12")
+
+[node name="Player3" type="CenterContainer" parent="PlayMenu/JoinStuff/Lobby/Players"]
+layout_mode = 2
+
+[node name="Background" type="ColorRect" parent="PlayMenu/JoinStuff/Lobby/Players/Player3"]
+custom_minimum_size = Vector2(245, 60)
+layout_mode = 2
+color = Color(0.643137, 0.196078, 0.0862745, 1)
+
+[node name="Label" type="Label" parent="PlayMenu/JoinStuff/Lobby/Players/Player3"]
+layout_mode = 2
+text = "Player not connected"
+label_settings = SubResource("LabelSettings_a3w2l")
+
+[node name="Player4" type="CenterContainer" parent="PlayMenu/JoinStuff/Lobby/Players"]
+layout_mode = 2
+
+[node name="Background" type="ColorRect" parent="PlayMenu/JoinStuff/Lobby/Players/Player4"]
+custom_minimum_size = Vector2(245, 60)
+layout_mode = 2
+color = Color(0.643137, 0.196078, 0.0862745, 1)
+
+[node name="Label" type="Label" parent="PlayMenu/JoinStuff/Lobby/Players/Player4"]
+layout_mode = 2
+text = "Player not connected"
+label_settings = SubResource("LabelSettings_cwphc")
+
+[node name="LeaveGame" type="Button" parent="PlayMenu/JoinStuff/Lobby"]
 layout_mode = 0
 offset_left = 132.0
 offset_top = 463.0
@@ -419,7 +473,7 @@ offset_bottom = 985.0
 [connection signal="pressed" from="PlayMenu/HostStuff/Lobby/CloseLobby" to="PlayMenu" method="_on_close_lobby_pressed"]
 [connection signal="button_down" from="PlayMenu/JoinStuff/Join Game" to="PlayMenu" method="_on_join_game_button_down"]
 [connection signal="timeout" from="PlayMenu/JoinStuff/FailedJoin/FailedJoinTimer" to="PlayMenu" method="_on_failed_join_timer_timeout"]
-[connection signal="pressed" from="PlayMenu/JoinStuff/Success/LeaveGame" to="PlayMenu" method="_on_leave_game_pressed"]
+[connection signal="pressed" from="PlayMenu/JoinStuff/Lobby/LeaveGame" to="PlayMenu" method="_on_leave_game_pressed"]
 [connection signal="timeout" from="PlayMenu/JoinStuff/Failure/HideTimout" to="PlayMenu" method="_on_hide_timout_timeout"]
 [connection signal="pressed" from="PlayMenu/Back" to="PlayMenu" method="_on_back_pressed"]
 [connection signal="pressed" from="PlayMenu/HostGame" to="PlayMenu" method="_on_host_game_pressed"]

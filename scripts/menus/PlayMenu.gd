@@ -132,6 +132,8 @@ func _on_join_game_button_down() -> void:
 	%JoinPort.text = ""
 	$JoinStuff/JoinName.text = ""
 	
+	update_join_lobby_ui()z
+	
 func _on_join_game_pressed() -> void:
 	$HostStuff.visible = false
 	$JoinStuff.visible = true
@@ -142,7 +144,7 @@ func _on_leave_game_pressed() -> void:
 		Network._cleanup_network()
 		
 		$"JoinStuff/Join Game".disabled = true
-		$JoinStuff/Success.visible = false
+		$JoinStuff/Lobby.visible = false
 		$JoinStuff/Failure.visible = false
 
 # ---------------
@@ -170,8 +172,34 @@ func update_lobby_ui():
 			bg.color = Color(0.643, 0.196, 0.086) # red
 			label.text = "Player not connected"
 
+func update_join_lobby_ui():
+	var player_slots = [
+		$JoinStuff/Lobby/Players/Player1,
+		$JoinStuff/Lobby/Players/Player2,
+		$JoinStuff/Lobby/Players/Player3,
+		$JoinStuff/Lobby/Players/Player4
+	]
+
+	var players = GameManager.Players.values()
+
+	for i in range(player_slots.size()):
+		var slot = player_slots[i]
+		var bg = slot.get_node("Background")
+		var label = slot.get_node("Label")
+		if i < players.size():
+			bg.color = Color(0.282, 0.447, 0.223) # green
+			label.text = "%s - Ready" % players[i].name
+			print("%s - Ready" % players[i].name)
+		else:
+			bg.color = Color(0.643, 0.196, 0.086) # red
+			label.text = "Player not connected"
+
 func _on_player_info_updated():
 	update_lobby_ui()
+	
+	var join_lobby = $JoinStuff.get_node_or_null("FailedJoin")
+	if join_lobby:
+		update_join_lobby_ui()
 
 func _on_back_pressed() -> void:
 	if multiplayer.has_multiplayer_peer():
@@ -207,4 +235,4 @@ func _on_connection_failed_ui() -> void:
 	$JoinStuff/Failure/HideTimout.start(4.0)
 	
 func _on_connection_successful_ui() -> void:
-	$JoinStuff/Success.visible = true
+	$JoinStuff/Lobby.visible = true
