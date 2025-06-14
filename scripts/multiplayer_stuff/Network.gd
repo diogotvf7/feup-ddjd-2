@@ -5,6 +5,7 @@ signal player_joined(id)
 signal connection_failed_ui
 signal connection_successful_ui
 signal player_info_updated
+signal player_left(id)
 
 var peer: ENetMultiplayerPeer
 var _pending_player_name = null

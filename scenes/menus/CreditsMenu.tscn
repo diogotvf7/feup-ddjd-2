@@ -61,21 +61,13 @@ theme = ExtResource("3_jd36o")
 text = "Back"
 flat = true
 
-[node name="HideMenu" parent="." instance=ExtResource("4_qrrg1")]
-visible = false
-offset_left = -483.0
-offset_top = -448.0
-offset_right = 918.0
-offset_bottom = 985.0
-
-[node name="HideTimer" type="Timer" parent="HideMenu"]
-
 [node name="ShowMenu" parent="." instance=ExtResource("5_ssrv5")]
 visible = false
-offset_left = -483.0
-offset_top = -448.0
-offset_right = 918.0
-offset_bottom = 985.0
+
+[node name="HideMenu" parent="." instance=ExtResource("4_qrrg1")]
+visible = false
+
+[node name="HideTimer" type="Timer" parent="HideMenu"]
 
 [connection signal="pressed" from="CreditsMenuController/Back" to="CreditsMenuController" method="_on_back_pressed"]
 [connection signal="timeout" from="HideMenu/HideTimer" to="CreditsMenuController" method="_on_hide_timer_timeout"]
