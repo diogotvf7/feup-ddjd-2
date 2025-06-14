@@ -132,7 +132,7 @@ func _on_join_game_button_down() -> void:
 	%JoinPort.text = ""
 	$JoinStuff/JoinName.text = ""
 	
-	update_join_lobby_ui()z
+	update_join_lobby_ui()
 	
 func _on_join_game_pressed() -> void:
 	$HostStuff.visible = false
