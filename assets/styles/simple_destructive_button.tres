@@ -3,7 +3,7 @@
 [ext_resource type="FontFile" uid="uid://b44dr1jdh0n8j" path="res://assets/fonts/RuinaOne-Black.ttf" id="1_flsv8"]
 
 [resource]
-Button/colors/font_color = Color(0.857931, 0.306661, 5.77569e-07, 1)
+Button/colors/font_color = Color(0.94648, 0.110686, 1.92523e-07, 1)
 Button/colors/font_hover_color = Color(0.834136, 0.805914, 0, 1)
 Button/font_sizes/font_size = 20
 Button/fonts/font = ExtResource("1_flsv8")
