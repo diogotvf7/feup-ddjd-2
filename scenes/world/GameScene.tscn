@@ -35,7 +35,7 @@ event_name = "event:/Music/Gameplay Music"
 event_guid = "{4ced639c-f8b4-4e77-bb5a-3361cbca3c73}"
 autoplay = true
 fmod_parameters/Status/id = 1258549040659187593
-fmod_parameters/Status = "Calm"
+fmod_parameters/Status = "Fighting"
 fmod_parameters/Status/labels = PackedStringArray("Calm", "Fighting")
 fmod_parameters/Status/variant_type = 4
 
