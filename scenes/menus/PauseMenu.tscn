@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://chsqjqpehxggq"]
+[gd_scene load_steps=3 format=3 uid="uid://dmhwas7lm7u2j"]
 
 [ext_resource type="Script" uid="uid://dd258q7snsynr" path="res://scripts/menus/pause_menu.gd" id="1_hdmo1"]
 [ext_resource type="FontFile" uid="uid://b44dr1jdh0n8j" path="res://assets/fonts/RuinaOne-Black.ttf" id="2_i7533"]
