@@ -1,0 +1,81 @@
+[gd_scene load_steps=7 format=3 uid="uid://dn5hta4gv7e3t"]
+
+[ext_resource type="Texture2D" uid="uid://dn5ectu5ysuwu" path="res://assets/images/credits_backsplash.png" id="1_0jhso"]
+[ext_resource type="Script" uid="uid://bfus78r4h8inr" path="res://scripts/menus/CreditsMenu.gd" id="1_ar8ut"]
+[ext_resource type="Theme" uid="uid://cabpteda0w4nv" path="res://assets/styles/font_style.tres" id="2_ar8ut"]
+[ext_resource type="Theme" uid="uid://bcmb3cg8eegje" path="res://assets/styles/simple_button_white.tres" id="3_jd36o"]
+[ext_resource type="PackedScene" uid="uid://dl825iw012chg" path="res://scenes/misc/hide_menu.tscn" id="4_qrrg1"]
+[ext_resource type="PackedScene" uid="uid://buv4a23cpmqds" path="res://scenes/misc/show_menu.tscn" id="5_ssrv5"]
+
+[node name="CreditsMenu" type="CanvasLayer"]
+
+[node name="CreditsMenuController" type="Control" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(1152, 648)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_ar8ut")
+
+[node name="CreditsBacksplash" type="Sprite2D" parent="CreditsMenuController"]
+position = Vector2(553, 443.5)
+scale = Vector2(0.879232, 0.905273)
+texture = ExtResource("1_0jhso")
+
+[node name="Title" type="Label" parent="CreditsMenuController"]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 27.0
+offset_right = 864.0
+offset_bottom = 87.0
+theme = ExtResource("2_ar8ut")
+theme_override_font_sizes/font_size = 60
+text = "No Cows Left Behind"
+
+[node name="Credits" type="Label" parent="CreditsMenuController"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 124.0
+offset_right = 1045.0
+offset_bottom = 345.0
+theme = ExtResource("2_ar8ut")
+theme_override_font_sizes/font_size = 25
+text = "This game was developed by Diogo, Henrique, Joao Silva and Madalena
+All the sound effects and music where produced by Ana, Jaoa mendes and tomas
+
+This game accounts for the 2nd project for the ddjd and sound design courses
+lectured at FEUP in the MEIC and MM masters, respectively
+
+Contacts of the authors of the game are available in the docs and in Itch.io
+Credits for models used can be found in the docs of the game"
+horizontal_alignment = 1
+
+[node name="Back" type="Button" parent="CreditsMenuController"]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 597.0
+offset_right = 104.0
+offset_bottom = 635.0
+theme = ExtResource("3_jd36o")
+text = "Back"
+flat = true
+
+[node name="HideMenu" parent="." instance=ExtResource("4_qrrg1")]
+visible = false
+offset_left = -483.0
+offset_top = -448.0
+offset_right = 918.0
+offset_bottom = 985.0
+
+[node name="HideTimer" type="Timer" parent="HideMenu"]
+
+[node name="ShowMenu" parent="." instance=ExtResource("5_ssrv5")]
+visible = false
+offset_left = -483.0
+offset_top = -448.0
+offset_right = 918.0
+offset_bottom = 985.0
+
+[connection signal="pressed" from="CreditsMenuController/Back" to="CreditsMenuController" method="_on_back_pressed"]
+[connection signal="timeout" from="HideMenu/HideTimer" to="CreditsMenuController" method="_on_hide_timer_timeout"]

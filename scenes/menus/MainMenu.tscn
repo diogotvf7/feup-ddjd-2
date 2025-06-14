@@ -334,14 +334,8 @@ offset_right = 918.0
 offset_bottom = 985.0
 
 [connection signal="pressed" from="Control/MainMenu/Play" to="Control" method="_on_play_pressed"]
-[connection signal="pressed" from="Control/MainMenu/Help" to="Control/MainMenu" method="hide"]
-[connection signal="pressed" from="Control/MainMenu/Help" to="Control/MainMenu" method="set_mouse_filter"]
-[connection signal="pressed" from="Control/MainMenu/Help" to="Control/SettingsMenu" method="show"]
-[connection signal="pressed" from="Control/MainMenu/Help" to="Control/SettingsMenu" method="set_mouse_filter" binds= [1]]
-[connection signal="pressed" from="Control/MainMenu/Credits" to="Control/MainMenu" method="hide"]
-[connection signal="pressed" from="Control/MainMenu/Credits" to="Control/CreditsMenu" method="show"]
-[connection signal="pressed" from="Control/MainMenu/Credits" to="Control" method="set_mouse_filter" binds= [0]]
-[connection signal="pressed" from="Control/MainMenu/Credits" to="Control/CreditsMenu" method="set_mouse_filter" binds= [1]]
+[connection signal="pressed" from="Control/MainMenu/Help" to="Control" method="_on_help_pressed"]
+[connection signal="pressed" from="Control/MainMenu/Credits" to="Control" method="_on_credits_pressed"]
 [connection signal="pressed" from="Control/MainMenu/Exit" to="Control" method="_on_exit_pressed"]
 [connection signal="pressed" from="Control/CreditsMenu/VBoxContainer/Back" to="Control/MainMenu" method="show"]
 [connection signal="pressed" from="Control/CreditsMenu/VBoxContainer/Back" to="Control/MainMenu" method="set_mouse_filter"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://chsqjqpehxggq"]
+[gd_scene load_steps=3 format=3 uid="uid://chsqjqpehxggq"]
 
 [ext_resource type="Script" uid="uid://dd258q7snsynr" path="res://scripts/menus/pause_menu.gd" id="1_hdmo1"]
+[ext_resource type="FontFile" uid="uid://b44dr1jdh0n8j" path="res://assets/fonts/RuinaOne-Black.ttf" id="2_i7533"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -27,9 +28,11 @@ size_flags_vertical = 4
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_i7533")
 text = "Resume"
 
 [node name="Settings" type="Button" parent="MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -39,6 +42,7 @@ text = "Settings"
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
+theme_override_fonts/font = ExtResource("2_i7533")
 text = "Leave Game"
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
