@@ -1,10 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://0qgpw7k2wxa8"]
+[gd_scene load_steps=5 format=3 uid="uid://0qgpw7k2wxa8"]
 
 [ext_resource type="Script" uid="uid://blt235eagdfu" path="res://scripts/aliens/UFO.gd" id="1_4aagy"]
 [ext_resource type="PackedScene" uid="uid://bglkoqj87ugu5" path="res://models/World Models/UFO/UFO_0422110228_texture_fbx/UFO_0422110228_texture.fbx" id="2_mnncn"]
 [ext_resource type="PackedScene" uid="uid://nqp4rg1h04dj" path="res://models/Entity models/Cow/Cow_0422082433_texture_fbx/Cow_0422082433_texture.fbx" id="3_vp0qk"]
 
-[node name="UFO" type="Node3D"]
+[sub_resource type="BoxShape3D" id="BoxShape3D_4aagy"]
+size = Vector3(13, 25, 13)
+
+[node name="UFO" type="StaticBody3D"]
 script = ExtResource("1_4aagy")
 
 [node name="UFO_0422110228_texture" parent="." instance=ExtResource("2_mnncn")]
@@ -24,13 +27,19 @@ spot_angle = 16.6044
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 13, 47)
+current = true
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.97492, -6.19831e-05, 0.222555, 0.221734, -0.0855285, -0.971349, 0.019095, 0.996336, -0.0833697, 0, 15.11, 0)
-light_energy = 0.134
+light_color = Color(0.462745, 0.819608, 1, 1)
+light_energy = 0.593
 
 [node name="CSGBox3D" type="CSGBox3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 7.67567, 0)
 transparency = 0.6
 cast_shadow = 0
 size = Vector3(2.25, 19.4937, 2.25)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.5, 0)
+shape = SubResource("BoxShape3D_4aagy")
