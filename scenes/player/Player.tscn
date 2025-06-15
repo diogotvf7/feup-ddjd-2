@@ -23,7 +23,7 @@ properties/1/replication_mode = 0
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_gfjak")
 
-[node name="Patrick" parent="." instance=ExtResource("2_524rm")]
+[node name="Character" parent="." instance=ExtResource("2_524rm")]
 unique_name_in_owner = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]

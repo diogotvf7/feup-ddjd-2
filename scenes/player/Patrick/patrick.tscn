@@ -1,8 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://0bepho4jeakl"]
+[gd_scene load_steps=20 format=3 uid="uid://0bepho4jeakl"]
 
 [ext_resource type="PackedScene" uid="uid://de448ejidpg6b" path="res://scenes/player/Patrick/mixamo/Patrick.fbx" id="1_15m2q"]
 [ext_resource type="Animation" uid="uid://8tqe8ky817si" path="res://scenes/player/Patrick/animations/jumping.res" id="2_di23b"]
-[ext_resource type="Animation" uid="uid://b5trvgfxkwojs" path="res://scenes/player/Patrick/animations/running.res" id="3_8jola"]
+[ext_resource type="Script" uid="uid://dqksiwcdkke2i" path="res://scenes/player/Patrick/patrick.gd" id="2_p62uu"]
+[ext_resource type="Animation" uid="uid://c0pcpgrmkmv50" path="res://scenes/player/Patrick/animations/running.res" id="3_8jola"]
+[ext_resource type="Animation" uid="uid://ctkp5mf58yt8g" path="res://scenes/player/Patrick/animations/gunplay.res" id="5_3x1ic"]
+[ext_resource type="Animation" uid="uid://dwfw8p5tav5g3" path="res://scenes/player/Patrick/animations/rifle_aiming_idle.res" id="6_266lt"]
+[ext_resource type="Animation" uid="uid://bfu5i47l05x3w" path="res://scenes/player/Patrick/animations/shooting_pistol.res" id="7_2y24v"]
 
 [sub_resource type="Animation" id="Animation_bq672"]
 resource_name = "mixamo_com"
@@ -214,48 +218,106 @@ tracks/28/keys = PackedFloat32Array(0, 1, 0.199554, -0.0824695, -0.296923, 0.930
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_iy4wq"]
 _data = {
+&"gunplay": ExtResource("5_3x1ic"),
 &"jumping": ExtResource("2_di23b"),
 &"mixamo_com": SubResource("Animation_bq672"),
-&"running": ExtResource("3_8jola")
+&"rifle_aiming_idle": ExtResource("6_266lt"),
+&"running": ExtResource("3_8jola"),
+&"shooting_pistol": ExtResource("7_2y24v")
 }
 
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_0hge8"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5pmvy"]
+animation = &"mixamo_com"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ug2a5"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_27tlw"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yb1qm"]
+animation = &"jumping"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_fhxs3"]
+animation = &"shooting_pistol"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_2ki7k"]
+animation = &"rifle_aiming_idle"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_3r3vb"]
+animation = &"gunplay"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s1iqe"]
+animation = &"running"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_w34xy"]
+graph_offset = Vector2(-181.46, 41.8053)
+"nodes/Blend2 3/node" = SubResource("AnimationNodeBlend2_0hge8")
+"nodes/Blend2 3/position" = Vector2(530, 250)
+nodes/idle/node = SubResource("AnimationNodeAnimation_5pmvy")
+nodes/idle/position = Vector2(-240, 130)
+nodes/is_jumping/node = SubResource("AnimationNodeBlend2_ug2a5")
+nodes/is_jumping/position = Vector2(247.782, 343.743)
+nodes/is_running/node = SubResource("AnimationNodeBlend2_27tlw")
+nodes/is_running/position = Vector2(30, 130)
+nodes/jump/node = SubResource("AnimationNodeAnimation_yb1qm")
+nodes/jump/position = Vector2(-10, 390)
+nodes/output/position = Vector2(820, 470)
+nodes/pistol_shooting/node = SubResource("AnimationNodeAnimation_fhxs3")
+nodes/pistol_shooting/position = Vector2(710, 90)
+nodes/rifle_aiming/node = SubResource("AnimationNodeAnimation_2ki7k")
+nodes/rifle_aiming/position = Vector2(190, 610)
+nodes/rifle_shooting/node = SubResource("AnimationNodeAnimation_3r3vb")
+nodes/rifle_shooting/position = Vector2(960, 260)
+nodes/running/node = SubResource("AnimationNodeAnimation_s1iqe")
+nodes/running/position = Vector2(-220, 360)
+node_connections = [&"Blend2 3", 0, &"is_jumping", &"Blend2 3", 1, &"rifle_aiming", &"is_jumping", 0, &"is_running", &"is_jumping", 1, &"jump", &"is_running", 0, &"idle", &"is_running", 1, &"running", &"output", 0, &"Blend2 3"]
+
 [node name="Patrick" instance=ExtResource("1_15m2q")]
+script = ExtResource("2_p62uu")
 
 [node name="Skeleton" parent="." index="0"]
-bones/0/position = Vector3(0.00326261, 0.811038, 0.0099218)
-bones/0/rotation = Quaternion(-0.00709859, 0.0380415, -0.0100441, 0.999201)
-bones/1/rotation = Quaternion(0.00958686, -0.00527188, -0.0143625, 0.999837)
-bones/2/rotation = Quaternion(-0.0322746, -0.000207085, 0.000811804, 0.999479)
-bones/3/rotation = Quaternion(-0.0322739, -0.000149764, 0.000807837, 0.999479)
-bones/4/rotation = Quaternion(-0.0233235, -0.00292365, -0.00187234, 0.999722)
-bones/5/rotation = Quaternion(-0.069657, -0.0541719, -0.0542821, 0.994619)
-bones/7/rotation = Quaternion(0.538088, 0.425371, 0.545164, -0.481992)
-bones/8/rotation = Quaternion(0.119269, 0.850862, -0.490346, -0.146185)
-bones/9/rotation = Quaternion(0.0758955, -0.707433, -0.00770861, 0.702652)
-bones/10/rotation = Quaternion(0.0742777, 0.704763, -0.00289181, 0.705538)
-bones/11/rotation = Quaternion(-0.220577, -0.0272981, 0.172913, 0.959532)
-bones/12/rotation = Quaternion(0.738392, 0.0333683, -0.273153, 0.615671)
-bones/13/rotation = Quaternion(-0.102424, 0.00766422, 0.154614, 0.982622)
-bones/14/rotation = Quaternion(-0.266779, -0.0148107, 0.161329, 0.950043)
-bones/15/rotation = Quaternion(0.568999, -0.403338, -0.541809, -0.469042)
-bones/16/rotation = Quaternion(0.0419465, 0.864613, -0.500578, -0.0103519)
-bones/17/rotation = Quaternion(0.110156, 0.707421, -0.0268916, 0.697637)
-bones/18/rotation = Quaternion(0.125997, -0.766284, -0.0726226, 0.625827)
-bones/19/rotation = Quaternion(0.0664981, 0.0204558, -0.306912, 0.949192)
-bones/20/rotation = Quaternion(0.38403, 0.0049286, 0.533764, 0.753388)
-bones/21/rotation = Quaternion(0.200237, -0.0826728, -0.296808, 0.93004)
-bones/22/rotation = Quaternion(-0.0281444, -0.014044, -0.32563, 0.944974)
-bones/23/rotation = Quaternion(0.0659853, 0.0409908, 0.996789, -0.0194197)
-bones/24/rotation = Quaternion(-0.0211947, 0.98752, -0.154098, 0.0246797)
-bones/25/rotation = Quaternion(-0.0305866, 0.635228, -0.771014, 0.0329732)
-bones/26/rotation = Quaternion(1.44642e-05, 0.999981, 0.00569723, -0.00252918)
-bones/28/rotation = Quaternion(-0.0971105, -0.00840694, 0.994711, 0.0324011)
-bones/29/rotation = Quaternion(0.0212621, 0.995128, -0.0788602, -0.0552285)
-bones/30/rotation = Quaternion(0.0422872, 0.672006, -0.737858, -0.0467479)
-bones/31/rotation = Quaternion(4.55262e-06, 0.999989, 0.0011139, -0.00451772)
+bones/0/position = Vector3(-0.00221361, 0.813227, 0.0155762)
+bones/0/rotation = Quaternion(-0.00169499, 0.0319485, -0.00492649, 0.999476)
+bones/1/rotation = Quaternion(0.00459923, -0.00912036, -0.00819771, 0.999914)
+bones/2/rotation = Quaternion(-0.0345213, -0.00138922, 0.00398026, 0.999395)
+bones/3/rotation = Quaternion(-0.0345178, -0.00132281, 0.00400847, 0.999395)
+bones/4/rotation = Quaternion(-0.0256131, -0.00295517, 0.000618436, 0.999667)
+bones/5/rotation = Quaternion(-0.0757059, -0.0628307, 0.0130647, 0.995063)
+bones/7/rotation = Quaternion(0.532405, 0.432446, 0.539791, -0.488017)
+bones/8/rotation = Quaternion(0.123752, 0.840123, -0.504861, -0.1549)
+bones/9/rotation = Quaternion(0.0821785, -0.707547, -0.00137324, 0.701871)
+bones/10/rotation = Quaternion(0.07158, 0.697314, -0.0018244, 0.71318)
+bones/11/rotation = Quaternion(-0.211257, -0.028572, 0.172069, 0.961741)
+bones/12/rotation = Quaternion(0.744975, 0.0331188, -0.271974, 0.608232)
+bones/13/rotation = Quaternion(-0.0934649, 0.00887164, 0.154125, 0.983581)
+bones/15/rotation = Quaternion(0.579477, -0.390546, -0.540486, -0.468567)
+bones/16/rotation = Quaternion(0.0504106, 0.872328, -0.486234, -0.00882914)
+bones/17/rotation = Quaternion(0.11288, 0.707343, -0.0296529, 0.697169)
+bones/18/rotation = Quaternion(0.123437, -0.76757, -0.0672176, 0.625365)
+bones/19/rotation = Quaternion(0.0750506, 0.0223008, -0.306126, 0.948766)
+bones/20/rotation = Quaternion(0.391987, 0.0044858, 0.532527, 0.75016)
+bones/21/rotation = Quaternion(0.208812, -0.0852234, -0.295353, 0.928386)
+bones/23/rotation = Quaternion(0.0692911, 0.0339328, 0.996847, -0.018545)
+bones/24/rotation = Quaternion(-0.0182845, 0.990174, -0.13564, 0.0286732)
+bones/25/rotation = Quaternion(-0.0326342, 0.64682, -0.761075, 0.0363731)
+bones/26/rotation = Quaternion(8.14842e-05, 0.99981, 0.018311, -0.00673788)
+bones/28/rotation = Quaternion(-0.0996827, -0.00426008, 0.994377, 0.035482)
+bones/29/rotation = Quaternion(0.0206089, 0.995621, -0.0777365, -0.0476565)
+bones/30/rotation = Quaternion(0.0440762, 0.679105, -0.731037, -0.0495903)
+bones/31/rotation = Quaternion(-1.52906e-05, 0.999421, 0.0339983, 0.0012973)
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
 &"": SubResource("AnimationLibrary_iy4wq")
 }
-autoplay = "mixamo_com"
+autoplay = "running"
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
+tree_root = SubResource("AnimationNodeBlendTree_w34xy")
+anim_player = NodePath("../AnimationPlayer")
+"parameters/Blend2 3/blend_amount" = 0
+parameters/is_jumping/blend_amount = 0
+parameters/is_running/blend_amount = 0.0
