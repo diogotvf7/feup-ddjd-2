@@ -31,13 +31,9 @@ PlayerScene = ExtResource("2_mh6lb")
 bank_paths = ["res://fmod/banks/Master.bank", "res://fmod/banks/Master.strings.bank"]
 
 [node name="FmodEventEmitter3D" type="FmodEventEmitter3D" parent="."]
-event_name = "event:/Music/Gameplay Music"
-event_guid = "{4ced639c-f8b4-4e77-bb5a-3361cbca3c73}"
+event_name = "event:/Ambience/Gameplay Ambience"
+event_guid = "{9b900c26-eb19-49da-9b78-506f635834cc}"
 autoplay = true
-fmod_parameters/Status/id = 1258549040659187593
-fmod_parameters/Status = "Calm"
-fmod_parameters/Status/labels = PackedStringArray("Calm", "Fighting")
-fmod_parameters/Status/variant_type = 4
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)

@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://dy3ajs4ctabub"]
+[gd_scene load_steps=7 format=3 uid="uid://dy3ajs4ctabub"]
 
 [ext_resource type="Script" uid="uid://7mrs8xoe4hcb" path="res://scripts/player/test_player.gd" id="1_bjb7f"]
 [ext_resource type="PackedScene" uid="uid://wvwvbu8pqwn7" path="res://scenes/components/health_component.tscn" id="2_jykre"]
+[ext_resource type="PackedScene" uid="uid://1g2gf6khqnlq" path="res://scenes/player/Inventory.tscn" id="3_i2piq"]
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_407k3"]
 
@@ -40,3 +41,5 @@ replication_config = SubResource("SceneReplicationConfig_bjb7f")
 [node name="HealthLabel" type="Label" parent="."]
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="Inventory" parent="." instance=ExtResource("3_i2piq")]
