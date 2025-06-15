@@ -1,10 +1,61 @@
-[gd_scene format=3 uid="uid://1g2gf6khqnlq"]
+[gd_scene load_steps=9 format=3 uid="uid://1g2gf6khqnlq"]
+
+[ext_resource type="Texture2D" uid="uid://36yvi2lrcdwh" path="res://assets/images/shotgun_no_bg.png" id="1_jvgvc"]
+[ext_resource type="Script" uid="uid://dnq06v4gcbkjy" path="res://scripts/player/Inventory.gd" id="1_tcrjn"]
+[ext_resource type="Texture2D" uid="uid://bgvdfi7jx810u" path="res://assets/images/pistol_bg.png" id="2_isc2k"]
+[ext_resource type="Texture2D" uid="uid://bary36aqxd6hs" path="res://assets/images/cereal_no_bg.png" id="4_iqedb"]
+[ext_resource type="Texture2D" uid="uid://dinmqtcfc4ifq" path="res://assets/images/beer_no_bg.png" id="5_4hlv2"]
+[ext_resource type="Texture2D" uid="uid://6gulqux6pkl2" path="res://assets/images/slime_no_bg.png" id="6_hgup7"]
+[ext_resource type="Theme" uid="uid://cabpteda0w4nv" path="res://assets/styles/font_style.tres" id="7_4hlv2"]
+[ext_resource type="Script" uid="uid://dd8hc73nc3tcf" path="res://scripts/player/BulletCount.gd" id="8_hgup7"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
-[node name="InevntoryControl" type="Control" parent="."]
+[node name="InventoryControl" type="Control" parent="."]
 custom_minimum_size = Vector2(1152, 648)
 layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("1_tcrjn")
+
+[node name="Shotgun" type="Sprite2D" parent="InventoryControl"]
+position = Vector2(1058.93, 598.625)
+scale = Vector2(0.182778, 0.182778)
+texture = ExtResource("1_jvgvc")
+
+[node name="Pistol" type="Sprite2D" parent="InventoryControl"]
+position = Vector2(1099.59, 553.625)
+scale = Vector2(0.168367, 0.168367)
+texture = ExtResource("2_isc2k")
+
+[node name="Cereal" type="Sprite2D" parent="InventoryControl"]
+position = Vector2(1110, 495)
+scale = Vector2(0.110309, 0.110309)
+texture = ExtResource("4_iqedb")
+
+[node name="Beer" type="Sprite2D" parent="InventoryControl"]
+position = Vector2(1111, 434)
+scale = Vector2(0.171717, 0.171717)
+texture = ExtResource("5_4hlv2")
+
+[node name="Slime" type="Sprite2D" parent="InventoryControl"]
+position = Vector2(1111, 382)
+scale = Vector2(0.127432, 0.127432)
+texture = ExtResource("6_hgup7")
+
+[node name="bullets" type="Label" parent="InventoryControl"]
+layout_mode = 0
+offset_left = 1075.0
+offset_top = 616.0
+offset_right = 1130.0
+offset_bottom = 631.0
+theme = ExtResource("7_4hlv2")
+theme_override_font_sizes/font_size = 15
+text = "Bullets"
+
+[node name="bullet count" type="Label" parent="InventoryControl"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("8_hgup7")
