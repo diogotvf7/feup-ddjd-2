@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://1g2gf6khqnlq"]
+[gd_scene load_steps=10 format=3 uid="uid://1g2gf6khqnlq"]
 
 [ext_resource type="Texture2D" uid="uid://36yvi2lrcdwh" path="res://assets/images/shotgun_no_bg.png" id="1_jvgvc"]
 [ext_resource type="Script" uid="uid://dnq06v4gcbkjy" path="res://scripts/player/Inventory.gd" id="1_tcrjn"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://6gulqux6pkl2" path="res://assets/images/slime_no_bg.png" id="6_hgup7"]
 [ext_resource type="Theme" uid="uid://cabpteda0w4nv" path="res://assets/styles/font_style.tres" id="7_4hlv2"]
 [ext_resource type="Script" uid="uid://dd8hc73nc3tcf" path="res://scripts/player/BulletCount.gd" id="8_hgup7"]
+[ext_resource type="Texture2D" uid="uid://br888u2ydlfd" path="res://assets/images/crosshair.png" id="9_hgup7"]
 
 [node name="CanvasLayer" type="CanvasLayer"]
 
@@ -17,6 +18,7 @@ layout_mode = 3
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 script = ExtResource("1_tcrjn")
 
 [node name="Shotgun" type="Sprite2D" parent="InventoryControl"]
@@ -59,3 +61,8 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
 script = ExtResource("8_hgup7")
+
+[node name="Crosshair" type="Sprite2D" parent="."]
+position = Vector2(577, 324)
+scale = Vector2(0.00857144, 0.00857144)
+texture = ExtResource("9_hgup7")

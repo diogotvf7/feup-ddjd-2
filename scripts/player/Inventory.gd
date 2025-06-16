@@ -1,29 +1,56 @@
 extends Control
  
-@export var shotgun = false
-@export var shotgun_bullets = 0
+@export var rpg = false
+@export var shotgun = true
+@export var shotgun_bullets = 1
 @export var pistol = true
 @export var cereal = false
-@export var beer = false
+@export var beer = true
 @export var slime = false
 
 signal bullets_changed(new_bullets)
 
 var inventory_updated = 0
 
+func _ready() -> void:
+	if shotgun:
+		$Shotgun.texture = load("res://assets/images/shotgun_bg.png")
+		
+	if cereal:
+		$Cereal.texture = load("res://assets/images/cereal_bg.png")
+	else:
+		$Cereal.texture = load("res://assets/images/cereal_no_bg.png")
+		
+	if beer:
+		$Beer.texture = load("res://assets/images/beer_bg.png")
+	else:
+		$Beer.texture = load("res://assets/images/beer_no_bg.png")
+		
+	if slime:
+		$Slime.texture = load("res://assets/images/slime_bg.png")
+	else:
+		$Slime.texture = load("res://assets/images/slime_no_bg.png")
+
 func _process(delta: float) -> void:
 	if inventory_updated > 0:
 		if shotgun:
 			$Shotgun.texture = load("res://assets/images/shotgun_bg.png")
+			
 		if cereal:
-			$Shotgun.texture = load("res://assets/images/cereal_bg.png")
+			$Cereal.texture = load("res://assets/images/cereal_bg.png")
+		else:
+			$Cereal.texture = load("res://assets/images/cereal_no_bg.png")
+			
 		if beer:
-			$Shotgun.texture = load("res://assets/images/beer_bg.png")
+			$Beer.texture = load("res://assets/images/beer_bg.png")
+		else:
+			$Beer.texture = load("res://assets/images/beer_no_bg.png")
+			
 		if slime:
-			$Shotgun.texture = load("res://assets/images/slime_bg.png")
+			$Slime.texture = load("res://assets/images/slime_bg.png")
+		else:
+			$Slime.texture = load("res://assets/images/slime_no_bg.png")
 		inventory_updated -= 1
 		
-func decrease_bullets() -> void:
-	if shotgun_bullets > 0:
-		shotgun_bullets -= 1
-		emit_signal("bullets_changed", shotgun_bullets)
+func update_bullets() -> void:
+	emit_signal("bullets_changed", shotgun_bullets)

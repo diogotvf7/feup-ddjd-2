@@ -15,12 +15,16 @@ const FOV_CHANGE = 1.5
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
+@onready var hand = $Head/Camera3D/Hand
 @onready var health_label: Label = $HealthLabel
 @onready var health_component: Node = $HealthComponent
+@onready var inventory: Node = $Inventory/InventoryControl
 
 var syncPos = Vector3.ZERO
 var is_paused := false
+var selected_item = 2
 
+signal update_bullets
 
 func _ready() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -36,8 +40,8 @@ func _ready() -> void:
 		health_label.visible = false
 	else:
 		health_label.visible = true
-
-
+		
+	self.update_bullets.connect(inventory.update_bullets)
 
 func _process(delta: float) -> void:
 	health_label.text = str(health_component.health)
@@ -62,12 +66,88 @@ func _physics_process(delta: float) -> void:
 			velocity += get_gravity() * delta
 
 		if Input.is_action_just_pressed("jump") and is_on_floor():
+			$Jump.play()
 			velocity.y = JUMP_VELOCITY
 
 		if Input.is_action_pressed("sprint") and is_on_floor():
 			speed = SPRINT_SPEED
 		else:
 			speed = WALK_SPEED
+			
+		if Input.is_action_just_pressed("collect"):
+			for body in $InteractArea.get_overlapping_bodies():
+				if body.is_in_group("collectable"):
+					match body.name:
+						"Shotgun", "RPG", "Cereal", "Beer", "Slime":
+							inventory.set(body.name.to_lower(), true)
+							inventory.inventory_updated += 1
+						"AmmoBox":
+							inventory.shotgun_bullets += 10
+							emit_signal("update_bullets")
+					body.queue_free()
+
+		if Input.is_action_just_pressed("consume"):
+			match selected_item:
+				3: # Beer
+					if inventory.cereal:
+						inventory.cereal = false
+						inventory.inventory_updated += 1
+						
+						# Add effects here
+						selected_item = 2
+						update_hand_display()
+				4: # Cereal
+					if inventory.beer:
+						inventory.beer = false
+						inventory.inventory_updated += 1
+						
+						# Add effects here
+						selected_item = 2
+						update_hand_display()
+				5: # Slime
+					if inventory.slime:
+						inventory.slime = false
+						inventory.inventory_updated += 1
+						
+						# Add effects here
+						selected_item = 2
+						update_hand_display()
+
+		if Input.is_action_just_pressed("shoot"):
+			print("selected item: " + str(selected_item))
+			match selected_item:
+				1: # Shotgun
+					if inventory.shotgun and inventory.shotgun_bullets > 0:
+						inventory.shotgun_bullets -= 1
+						emit_signal("update_bullets")
+						
+						$Shotgun.play()
+						# Add shooting logic here
+				2: # Pistol
+					if inventory.pistol:
+						$Pistol.play()
+						# Add pistol shooting logic here
+						pass
+		if Input.is_action_just_pressed("inventory_item_1"):
+			if inventory.shotgun:
+				selected_item = 1
+				update_hand_display()
+		if Input.is_action_just_pressed("inventory_item_2"):
+			if inventory.pistol:
+				selected_item = 2
+				update_hand_display()
+		if Input.is_action_just_pressed("inventory_item_3"):
+			if inventory.cereal:
+				selected_item = 3
+				update_hand_display()
+		if Input.is_action_just_pressed("inventory_item_4"):
+			if inventory.beer:
+				selected_item = 4
+				update_hand_display()
+		if Input.is_action_just_pressed("inventory_item_5"):
+			if inventory.slime:
+				selected_item = 5
+				update_hand_display()
 			
 		var input_dir := Input.get_vector("left", "right", "up", "down")
 		var direction : Vector3 = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
@@ -87,6 +167,7 @@ func _physics_process(delta: float) -> void:
 
 		t_bob += delta * velocity.length() * float(is_on_floor())
 		camera.transform.origin = _headbob(t_bob)
+		#$Hand.global_rotation = $Head/Camera3D.global_rotation
 
 		var velocity_clamped = clamp(velocity.length(), 0.5, SPRINT_SPEED * 2)
 		var target_fov = BASE_FOV + FOV_CHANGE * velocity_clamped
@@ -96,6 +177,9 @@ func _physics_process(delta: float) -> void:
 	else:
 		global_position = global_position.lerp(syncPos, 0.5)
 
+func update_hand_display() -> void:
+	for i in hand.get_child_count():
+		hand.get_child(i).visible = (i == selected_item - 1)
 
 func _headbob(time) -> Vector3:
 	var pos = Vector3.ZERO
