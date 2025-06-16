@@ -41,7 +41,6 @@ class CameraController:
 		camera_pivot = pivot
 	
 	func setup_camera(overrides: Dictionary) -> void:
-		# Apply FOV override if provided
 		var fov_override = overrides.get("fov", 0.0)
 		if fov_override > 0.0:
 			camera.fov = fov_override
@@ -53,18 +52,14 @@ class CameraController:
 			input_direction = event.screen_relative * sensitivity
 	
 	func update_camera_and_player(delta: float) -> void:
-		# Update player rotation based on camera input
 		owner_player.player_rotation_y -= input_direction.x * delta
 		owner_player.rotation.y = owner_player.player_rotation_y
 		
-		# Update camera pitch
 		pitch += input_direction.y * delta
 		pitch = clamp(pitch, -PI/4.0, PI/4.0)
 		
-		# Apply pitch to camera pivot
 		camera_pivot.rotation.x = pitch
 		
-		# Clear input for next frame
 		input_direction = Vector2.ZERO
 
 var camera_controller: CameraController
@@ -177,11 +172,9 @@ func _handle_jump() -> void:
 		velocity.y += JUMP_IMPULSE
 
 func _update_character_animation() -> void:
-	var was_jumping = Input.is_action_just_pressed("jump") and is_on_floor()
-	
-	if was_jumping:
+	if not is_on_floor():
 		character.jump()
-	elif is_on_floor():
+	else:
 		var ground_speed = velocity.length()
 		if ground_speed > 0.0:
 			character.run()
