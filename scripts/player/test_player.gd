@@ -13,7 +13,9 @@ var ROTATION_SPEED = 10.0
 
 const BASE_FOV = 75.0
 const FOV_CHANGE = 1.5
+const JUMP_IMPULSE = 10.0
 
+var _gravity := -30.0
 
 @onready var camera: Camera3D = %Camera3D
 
