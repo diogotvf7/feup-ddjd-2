@@ -1,0 +1,10 @@
+[gd_resource type="StandardMaterial3D" load_steps=3 format=3 uid="uid://cec7d762dgmx"]
+
+[ext_resource type="Texture2D" uid="uid://cjqu13yvun6q6" path="res://models/World Models/corn_old/textures/Maize_baseColor.png" id="1_1cvej"]
+[ext_resource type="Texture2D" uid="uid://1bjjfpqbq0te" path="res://models/World Models/corn_old/textures/Maize_normal.png" id="2_i5ptk"]
+
+[resource]
+albedo_texture = ExtResource("1_1cvej")
+normal_enabled = true
+normal_scale = 2.0
+normal_texture = ExtResource("2_i5ptk")
