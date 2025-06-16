@@ -4,7 +4,13 @@ extends Control
 
 func _on_resume_pressed() -> void:
 	get_tree().get_current_scene().resume_game()
-
+	
+	var my_id = multiplayer.get_unique_id()
+	var my_player_node = get_tree().get_current_scene().get_node_or_null(str(my_id))
+	if my_player_node:
+		var inventory_ui = my_player_node.get_node_or_null("Inventory/InventoryControl")
+		if inventory_ui:
+			inventory_ui.visible = true
 
 func _on_settings_pressed() -> void:
 	print("Settings button pressed – no functionality yet.")

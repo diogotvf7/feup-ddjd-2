@@ -5,4 +5,4 @@ func _ready() -> void:
 	$"..".bullets_changed.connect(_on_bullet_change)
 
 func _on_bullet_change(new_bullets: int) -> void:
-	text = str(new_bullets)
+	text = str(int(new_bullets))

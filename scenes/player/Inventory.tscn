@@ -58,8 +58,12 @@ text = "Bullets"
 
 [node name="bullet count" type="Label" parent="InventoryControl"]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 23.0
+offset_left = 1032.0
+offset_top = 610.0
+offset_right = 1072.0
+offset_bottom = 633.0
+theme_override_font_sizes/font_size = 15
+horizontal_alignment = 2
 script = ExtResource("8_hgup7")
 
 [node name="Crosshair" type="Sprite2D" parent="."]

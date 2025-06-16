@@ -1,10 +1,11 @@
-[gd_scene load_steps=14 format=3 uid="uid://dy3ajs4ctabub"]
+[gd_scene load_steps=15 format=3 uid="uid://dy3ajs4ctabub"]
 
 [ext_resource type="Script" uid="uid://7mrs8xoe4hcb" path="res://scripts/player/test_player.gd" id="1_bjb7f"]
-[ext_resource type="PackedScene" uid="uid://wvwvbu8pqwn7" path="res://scenes/components/health_component.tscn" id="2_jykre"]
 [ext_resource type="PackedScene" uid="uid://1g2gf6khqnlq" path="res://scenes/player/Inventory.tscn" id="3_i2piq"]
+[ext_resource type="PackedScene" uid="uid://b5m52xwf4ppup" path="res://scenes/player/HealthAndEffects.tscn" id="3_kbn6g"]
 [ext_resource type="PackedScene" uid="uid://b5qpfn4kqy1yg" path="res://models/Gun Models/low_poly_shotgun/scene.gltf" id="3_yf657"]
 [ext_resource type="PackedScene" uid="uid://3cufkh5gqxdc" path="res://models/Gun Models/pistol/scene.gltf" id="4_ps3ir"]
+[ext_resource type="PackedScene" uid="uid://b04q30cyidpve" path="res://scenes/player/SlimeEffect.tscn" id="4_vkgrv"]
 [ext_resource type="PackedScene" uid="uid://bmjami1mqcar8" path="res://models/Gun Models/rpg_launcher_low_poly/scene.gltf" id="5_llkmh"]
 [ext_resource type="PackedScene" uid="uid://2oeeyvikxapf" path="res://models/Collectables Models/beer_can/scene.gltf" id="6_kbn6g"]
 [ext_resource type="PackedScene" uid="uid://cbno2ggixvij0" path="res://models/Collectables Models/froot_loops/scene.gltf" id="7_vkgrv"]
@@ -29,6 +30,11 @@ properties/1/replication_mode = 0
 script = ExtResource("1_bjb7f")
 
 [node name="Inventory" parent="." instance=ExtResource("3_i2piq")]
+
+[node name="HealthAndEffects" parent="." instance=ExtResource("3_kbn6g")]
+
+[node name="SlimeEffect" parent="." instance=ExtResource("4_vkgrv")]
+visible = false
 
 [node name="Bean" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -59,10 +65,6 @@ visible = false
 [node name="Pistol" parent="Head/Camera3D/Hand" instance=ExtResource("4_ps3ir")]
 transform = Transform3D(-1.5, 0, -2.26494e-07, 0, 1.5, 0, 2.26494e-07, 0, -1.5, 0.537203, 1.49259, -0.706582)
 
-[node name="RPG" parent="Head/Camera3D/Hand" instance=ExtResource("5_llkmh")]
-transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, -1.50941, 1.12667, -1.03732)
-visible = false
-
 [node name="Beer" parent="Head/Camera3D/Hand" instance=ExtResource("6_kbn6g")]
 transform = Transform3D(0.02, -3.94444e-05, 0, 3.94444e-05, 0.02, 0, 0, 0, 0.02, 0.476777, 1.50498, -1.04092)
 visible = false
@@ -75,10 +77,12 @@ visible = false
 transform = Transform3D(0.190211, 0, -0.0618034, 0, 0.2, 0, 0.0618034, 0, 0.190211, 0.538216, 1.46741, -1.00453)
 visible = false
 
+[node name="RPG" parent="Head/Camera3D/Hand" instance=ExtResource("5_llkmh")]
+transform = Transform3D(-3.0598e-08, 0, 0.7, 0, 0.7, 0, -0.7, 0, -3.0598e-08, -1.50941, 1.12667, -1.03732)
+visible = false
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_bjb7f")
-
-[node name="HealthComponent" parent="." instance=ExtResource("2_jykre")]
 
 [node name="HealthLabel" type="Label" parent="."]
 offset_right = 40.0

@@ -44,7 +44,7 @@ func process_move(delta: float) -> void:
 	if global_position.distance_to(closest_player.global_position) < AttackReach:
 		if time_since_last_attack >= attack_cooldown:
 			var attack: Attack = Attack.new(1.0, self)
-			closest_player.health_component.damage(attack)
+			#closest_player.health_component.damage(attack)
 			time_since_last_attack = 0.0  # Reset cooldown
 
 	move_and_slide()

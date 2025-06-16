@@ -2,17 +2,25 @@ extends Node3D
 
 @export var PlayerScene: PackedScene
 
+var my_id
+var my_player_node
 @onready var pauseMenu = $PauseMenu
+
 var paused = false
 
 func _ready() -> void:
 	Network.player_left.connect(_on_player_left)
+	my_id = multiplayer.get_unique_id()
 
 	# Spawn all current players
 	var index = 0
 	for i in GameManager.Players:
 		var currentPlayer = PlayerScene.instantiate()
 		currentPlayer.name = str(GameManager.Players[i].id)
+		
+		if my_id == GameManager.Players[i].id:
+			my_player_node = currentPlayer
+			
 		add_child(currentPlayer)
 
 		for spawn in get_tree().get_nodes_in_group("PlayerSpawnPoint"):
@@ -28,9 +36,21 @@ func _process(delta: float) -> void:
 func pause_menu():
 	if paused:
 		pauseMenu.hide()
+		
+		if my_player_node:
+			var inventory_ui = my_player_node.get_node_or_null("Inventory")
+			if inventory_ui:
+				inventory_ui.visible = true
+		
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	else:
 		pauseMenu.show()
+		
+		if my_player_node:
+			var inventory_ui = my_player_node.get_node_or_null("Inventory")
+			if inventory_ui:
+				inventory_ui.visible = false
+		
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 
 	var local_player := get_node_or_null(str(multiplayer.get_unique_id()))

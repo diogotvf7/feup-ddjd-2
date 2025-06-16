@@ -2,11 +2,11 @@ extends Control
  
 @export var rpg = false
 @export var shotgun = true
-@export var shotgun_bullets = 1
+@export var shotgun_bullets: int = 1
 @export var pistol = true
-@export var cereal = false
+@export var cereal = true
 @export var beer = true
-@export var slime = false
+@export var slime = true
 
 signal bullets_changed(new_bullets)
 

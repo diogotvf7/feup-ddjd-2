@@ -3,6 +3,7 @@ extends Control
 var nextScene = 0
 
 func _ready() -> void:
+	pass
 	$"../ShowMenu".show()
 	$"../ShowMenu/AnimationPlayer".play("move")
 	$"../ShowMenu".show()
