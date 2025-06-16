@@ -17,4 +17,5 @@ script = ExtResource("1_tcpft")
 layout_mode = 0
 offset_right = 1152.0
 offset_bottom = 648.0
+mouse_filter = 2
 color = Color(1, 0.40936, 0.319561, 0.32549)

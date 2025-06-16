@@ -47,6 +47,10 @@ window/stretch/mode="viewport"
 
 enabled=PackedStringArray("res://addons/fmod/plugin.cfg")
 
+[global_group]
+
+collectable=""
+
 [input]
 
 up={

@@ -1,0 +1,41 @@
+[gd_scene load_steps=8 format=3 uid="uid://vhphmrisxd7y"]
+
+[ext_resource type="Script" uid="uid://xde5u6yqj2ei" path="res://scripts/consumables/Collectable.gd" id="1_qf582"]
+[ext_resource type="PackedScene" uid="uid://2oeeyvikxapf" path="res://models/Collectables Models/beer_can/scene.gltf" id="2_vdx7y"]
+[ext_resource type="PackedScene" uid="uid://cbno2ggixvij0" path="res://models/Collectables Models/froot_loops/scene.gltf" id="3_ao3kk"]
+[ext_resource type="PackedScene" uid="uid://l57t35k5pd5n" path="res://models/Collectables Models/simple_slime_creature/scene.gltf" id="4_kquko"]
+[ext_resource type="PackedScene" uid="uid://cxe2reqlgnnxo" path="res://models/Gun Models/low-poly_ammo_can/scene.gltf" id="5_enrus"]
+[ext_resource type="PackedScene" uid="uid://bmjami1mqcar8" path="res://models/Gun Models/rpg_launcher_low_poly/scene.gltf" id="6_epnb3"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_qf582"]
+
+[node name="Collectable" type="Node3D" groups=["collectable"]]
+script = ExtResource("1_qf582")
+
+[node name="Beer" parent="." instance=ExtResource("2_vdx7y")]
+transform = Transform3D(0.0444836, 0.00671448, 0.0218203, -0.0228301, 0.0130829, 0.0425162, 0, -0.0477886, 0.0147054, 0, 0.169776, 0)
+visible = false
+
+[node name="Cereal" parent="." instance=ExtResource("3_ao3kk")]
+transform = Transform3D(0.249647, 0, -0.166362, 0, 0.3, 0, 0.166362, 0, 0.249647, 0, 0, 0)
+visible = false
+
+[node name="Slime" parent="." instance=ExtResource("4_kquko")]
+transform = Transform3D(0.233071, -0.127015, 0.299241, 0.0780476, 0.379298, 0.100206, -0.315574, 0, 0.245791, 0.0641499, 0, 0)
+visible = false
+
+[node name="AmmoBox" parent="." instance=ExtResource("5_enrus")]
+transform = Transform3D(-0.217151, 0, -1.78685, 0, 1.8, 0, 1.78685, 0, -0.217151, 0, 0, 0)
+visible = false
+
+[node name="RPG" parent="." instance=ExtResource("6_epnb3")]
+transform = Transform3D(0.5, 0, 0, 0, 0.125562, -0.483978, 0, 0.483978, 0.125562, 0.058749, 1.53667, -0.463018)
+visible = false
+
+[node name="ColisionArea" type="Area3D" parent="."]
+collision_layer = 2
+collision_mask = 2
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ColisionArea"]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0.546873, 0)
+shape = SubResource("SphereShape3D_qf582")

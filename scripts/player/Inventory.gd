@@ -5,7 +5,7 @@ extends Control
 @export var shotgun_bullets: int = 1
 @export var pistol = true
 @export var cereal = true
-@export var beer = true
+@export var beer = false
 @export var slime = true
 
 signal bullets_changed(new_bullets)

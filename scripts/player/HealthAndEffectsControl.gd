@@ -57,5 +57,5 @@ func _on_slime_timer_timeout() -> void:
 
 func update_health_bar():
 	var health_ratio = float(health) / float(MaxHealth)
-	var new_x = -457 + 457 * (1.0 - health_ratio)
+	var new_x = -457 * (1.0 - health_ratio)
 	$HealthBar/HealthLevel.position.x = new_x

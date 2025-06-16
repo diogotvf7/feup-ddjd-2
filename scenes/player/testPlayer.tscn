@@ -31,10 +31,10 @@ script = ExtResource("1_bjb7f")
 
 [node name="Inventory" parent="." instance=ExtResource("3_i2piq")]
 
-[node name="HealthAndEffects" parent="." instance=ExtResource("3_kbn6g")]
-
 [node name="SlimeEffect" parent="." instance=ExtResource("4_vkgrv")]
 visible = false
+
+[node name="HealthAndEffects" parent="." instance=ExtResource("3_kbn6g")]
 
 [node name="Bean" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -44,10 +44,12 @@ mesh = SubResource("CapsuleMesh_407k3")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 shape = SubResource("ConvexPolygonShape3D_bjb7f")
 
-[node name="InteractArea" type="Area3D" parent="."]
+[node name="CollectableArea" type="Area3D" parent="."]
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0.951972, 0)
+collision_layer = 2
+collision_mask = 2
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CollectableArea"]
 shape = SubResource("SphereShape3D_kbn6g")
 
 [node name="Head" type="Node3D" parent="."]
@@ -83,10 +85,6 @@ visible = false
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_bjb7f")
-
-[node name="HealthLabel" type="Label" parent="."]
-offset_right = 40.0
-offset_bottom = 23.0
 
 [node name="Jump" type="FmodEventEmitter3D" parent="."]
 event_name = "event:/Player/Jump"
