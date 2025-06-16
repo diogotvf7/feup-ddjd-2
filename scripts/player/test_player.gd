@@ -28,88 +28,44 @@ var player_rotation_y: float = 0.0
 
 #region Camera System
 class CameraController:
-	var distance: float
-	var height: float
-	var lateral_offset: float
-	var fov: float
-	var follow_speed: float
-	var pitch: float = 0.0
-	var input_direction: Vector2 = Vector2.ZERO
-	
 	var camera: Camera3D
 	var camera_pivot: Node3D
 	var owner_player: CharacterBody3D
+	
+	var input_direction: Vector2 = Vector2.ZERO
+	var pitch: float = 0.0
 	
 	func _init(player: CharacterBody3D, cam: Camera3D, pivot: Node3D):
 		owner_player = player
 		camera = cam
 		camera_pivot = pivot
 	
-	func extract_configuration(overrides: Dictionary) -> void:
-		var initial_pos = camera.global_position
-		var player_pos = owner_player.global_position
-		var relative_pos = initial_pos - player_pos
+	func setup_camera(overrides: Dictionary) -> void:
+		# Apply FOV override if provided
+		var fov_override = overrides.get("fov", 0.0)
+		if fov_override > 0.0:
+			camera.fov = fov_override
 		
-		# Extract distance
-		distance = overrides.get("distance", 0.0)
-		if distance <= 0.0:
-			var horizontal_distance = Vector2(relative_pos.x, relative_pos.z).length()
-			distance = max(horizontal_distance, 3.0)
-		
-		# Extract height
-		height = overrides.get("height", 0.0)
-		if height <= 0.0:
-			height = max(relative_pos.y, 1.5)
-		
-		# Extract lateral offset
-		lateral_offset = overrides.get("lateral_offset", 0.0)
-		if lateral_offset == 0.0:
-			var player_right = owner_player.global_basis.x
-			lateral_offset = relative_pos.dot(player_right)
-		
-		# Extract FOV
-		fov = overrides.get("fov", 0.0)
-		if fov <= 0.0:
-			fov = camera.fov
-		
-		follow_speed = overrides.get("follow_speed", 8.0)
-	
-	func apply_settings() -> void:
-		camera.fov = fov
+		print("Camera setup complete. FOV: ", camera.fov)
 	
 	func handle_input(event: InputEvent, sensitivity: float) -> void:
 		if event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
 			input_direction = event.screen_relative * sensitivity
 	
-	func update_rotation(delta: float) -> void:
+	func update_camera_and_player(delta: float) -> void:
+		# Update player rotation based on camera input
 		owner_player.player_rotation_y -= input_direction.x * delta
 		owner_player.rotation.y = owner_player.player_rotation_y
 		
+		# Update camera pitch
 		pitch += input_direction.y * delta
 		pitch = clamp(pitch, -PI/4.0, PI/4.0)
 		
+		# Apply pitch to camera pivot
+		camera_pivot.rotation.x = pitch
+		
+		# Clear input for next frame
 		input_direction = Vector2.ZERO
-	
-	func update_position(delta: float) -> void:
-		var player_back = -owner_player.global_basis.z
-		var player_right = owner_player.global_basis.x
-		
-		var pitch_offset = Vector3.UP * sin(pitch) * distance * 0.5
-		var distance_adjustment = cos(pitch) * distance
-		
-		var desired_pos = (
-			owner_player.global_position + 
-			player_back * distance_adjustment + 
-			Vector3.UP * height + 
-			player_right * lateral_offset + 
-			pitch_offset
-		)
-		
-		camera.global_position = camera.global_position.lerp(desired_pos, follow_speed * delta)
-		
-		camera.rotation = Vector3.ZERO
-		var look_target = owner_player.global_position + Vector3.UP * 1.0
-		camera.look_at(look_target, Vector3.UP)
 
 var camera_controller: CameraController
 #endregion
@@ -126,10 +82,6 @@ var camera_controller: CameraController
 #region Export Variables
 @export_group("Camera")
 @export_range(0.0, 1.0) var mouse_sensitivity: float = 0.15
-@export var override_camera_distance: float = 0.0
-@export var override_camera_height: float = 0.0
-@export var override_camera_follow_speed: float = 8.0
-@export var override_camera_lateral_offset: float = 0.0
 @export var override_camera_fov: float = 0.0
 #endregion
 
@@ -159,15 +111,10 @@ func _setup_camera() -> void:
 	camera_controller = CameraController.new(self, camera, camera_pivot)
 	
 	var overrides = {
-		"distance": override_camera_distance,
-		"height": override_camera_height,
-		"lateral_offset": override_camera_lateral_offset,
-		"fov": override_camera_fov,
-		"follow_speed": override_camera_follow_speed
+		"fov": override_camera_fov
 	}
 	
-	camera_controller.extract_configuration(overrides)
-	camera_controller.apply_settings()
+	camera_controller.setup_camera(overrides)
 #endregion
 
 #region Input Handling
@@ -194,11 +141,10 @@ func _physics_process(delta: float) -> void:
 		return
 	
 	if _is_local_player():
-		_handle_camera_rotation(delta)
+		_handle_camera_and_rotation(delta)
 		_handle_movement(delta)
 		_handle_jump()
 		move_and_slide()
-		camera_controller.update_position(delta)
 		_update_character_animation()
 
 func _check_death() -> bool:
@@ -207,8 +153,8 @@ func _check_death() -> bool:
 		return true
 	return false
 
-func _handle_camera_rotation(delta: float) -> void:
-	camera_controller.update_rotation(delta)
+func _handle_camera_and_rotation(delta: float) -> void:
+	camera_controller.update_camera_and_player(delta)
 
 func _handle_movement(delta: float) -> void:
 	var input_vector = Input.get_vector("left", "right", "up", "down")

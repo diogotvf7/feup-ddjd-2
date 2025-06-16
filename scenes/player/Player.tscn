@@ -32,8 +32,7 @@ transform = Transform3D(1, 0, 0, 0, 0.866339, -0.499456, 0, 0.499456, 0.866339, 
 
 [node name="Camera3D" type="Camera3D" parent="CameraPivot"]
 unique_name_in_owner = true
-transform = Transform3D(-1, 6.58635e-09, 1.50852e-07, 0, 0.999048, -0.0436194, -1.50996e-07, -0.0436194, -0.999049, -1.2, -0.5, -2.5)
-fov = 59.7
+transform = Transform3D(-1, 6.58633e-09, 1.50852e-07, 1.37271e-08, 0.998877, 0.0473855, -1.50371e-07, 0.0473855, -0.998877, -1.14413, -0.329993, -2.20511)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_bjb7f")
