@@ -90,8 +90,15 @@ func _physics_process(delta: float) -> void:
 		move_direction.y = 0.0
 		move_direction = move_direction.normalized()
 		
+		var y_velocity := velocity.y
+		velocity.y = 0.0
 		velocity = velocity.move_toward(move_direction * WALK_SPEED, ACCELERATION * delta)
+		velocity.y = y_velocity + _gravity * delta
 		
+		var is_starting_jump := Input.is_action_just_pressed("jump") and is_on_floor()
+		if is_starting_jump:
+			velocity.y += JUMP_IMPULSE
+			
 		move_and_slide()
 		
 		if move_direction.length() > 0.2:
@@ -100,11 +107,14 @@ func _physics_process(delta: float) -> void:
 		var target_angle := Vector3.BACK.signed_angle_to(_last_movement_direction, Vector3.UP)
 		character.global_rotation.y = lerp_angle(character.rotation.y, target_angle, ROTATION_SPEED * delta)
 		
-		var ground_speed := velocity.length()
-		if ground_speed > 0.0:
-			character.run()
-		else:
-			character.idle()
+		if is_starting_jump:
+			character.jump()
+		elif is_on_floor():
+			var ground_speed := velocity.length()
+			if ground_speed > 0.0:
+				character.run()
+			else:
+				character.idle()
 
 		
 		

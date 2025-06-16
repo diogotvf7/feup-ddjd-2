@@ -51,6 +51,7 @@ unique_name_in_owner = true
 replication_config = SubResource("SceneReplicationConfig_bjb7f")
 
 [node name="HealthComponent" parent="." instance=ExtResource("2_4kuee")]
+MaxHealth = 100.0
 
 [node name="HealthLabel" type="Label" parent="."]
 offset_right = 40.0
