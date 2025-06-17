@@ -4,12 +4,11 @@ importer="scene"
 importer_version=1
 type="PackedScene"
 uid="uid://dv2ob5jhggbyf"
-path="res://.godot/imported/scene.gltf-9dde2dcd694a9a57dc8ddd2fdaccd0c4.scn"
+valid=false
 
 [deps]
 
 source_file="res://models/World Models/wooden_fence/scene.gltf"
-dest_files=["res://.godot/imported/scene.gltf-9dde2dcd694a9a57dc8ddd2fdaccd0c4.scn"]
 
 [params]
 

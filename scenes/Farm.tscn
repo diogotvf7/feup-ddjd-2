@@ -11,11 +11,11 @@
 [sub_resource type="BoxShape3D" id="BoxShape3D_x07rp"]
 size = Vector3(200, 2, 200)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_x07rp"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m66ec"]
 albedo_color = Color(0.304919, 0.17455, 0, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ocb10"]
-material = SubResource("StandardMaterial3D_x07rp")
+material = SubResource("StandardMaterial3D_m66ec")
 size = Vector3(200, 2, 200)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ocb10"]
@@ -23,12 +23,12 @@ albedo_texture = ExtResource("2_o7qkg")
 normal_enabled = true
 normal_texture = ExtResource("3_rn75f")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ghota"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_o7qkg"]
 transparency = 1
 albedo_color = Color(0.478431, 0.329412, 0.203922, 0)
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_luey7"]
-material = SubResource("StandardMaterial3D_ghota")
+material = SubResource("StandardMaterial3D_o7qkg")
 size = Vector2(100, 100)
 
 [sub_resource type="MultiMesh" id="MultiMesh_xwylr"]

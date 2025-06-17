@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://beq1my27lk0v3"]
+
+[ext_resource type="PackedScene" uid="uid://b1n5vo8tha5rq" path="res://models/World Models/Trees/ca-p----de-pinheiro.gltf" id="1_1r6fq"]
+
+[node name="Sketchfab_Scene" instance=ExtResource("1_1r6fq")]
+
+[node name="Lowpoly_Tree_01" parent="Sketchfab_model/325562602d7a4038b9475c0d18836341_fbx/RootNode" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38619, 0.648117, -299.934)
