@@ -1,0 +1,229 @@
+[gd_scene load_steps=20 format=3 uid="uid://bcrtmht2vgyiv"]
+
+[ext_resource type="Script" uid="uid://cilyvyi24hpsa" path="res://scripts/menus/CharacterSelectionMenu.gd" id="1_gfkl2"]
+[ext_resource type="Texture2D" uid="uid://dlw4uu7wjo5id" path="res://assets/images/play_backsplash.png" id="2_p8n4t"]
+[ext_resource type="FontFile" uid="uid://b44dr1jdh0n8j" path="res://assets/fonts/RuinaOne-Black.ttf" id="3_h2k8s"]
+[ext_resource type="Theme" uid="uid://bcmb3cg8eegje" path="res://assets/styles/simple_button_white.tres" id="4_k5n9v"]
+[ext_resource type="PackedScene" uid="uid://dl825iw012chg" path="res://scenes/misc/hide_menu.tscn" id="5_m8p2l"]
+[ext_resource type="PackedScene" uid="uid://buv4a23cpmqds" path="res://scenes/misc/show_menu.tscn" id="6_t4j8k"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_title"]
+font = ExtResource("3_h2k8s")
+font_size = 60
+font_color = Color(0.152941, 0.0862745, 0.0352941, 1)
+
+[sub_resource type="Theme" id="Theme_character_button"]
+default_font = ExtResource("3_h2k8s")
+default_font_size = 40
+Button/colors/font_hover_color = Color(0.934814, 0.838928, 3.85046e-07, 1)
+Button/fonts/font = ExtResource("3_h2k8s")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_9"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_10"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_11"]
+
+[node name="CharacterSelectionMenu" type="CanvasLayer"]
+
+[node name="CharacterSelectionMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_gfkl2")
+
+[node name="BackgroundImage" type="Sprite2D" parent="CharacterSelectionMenu"]
+position = Vector2(576, 346.5)
+scale = Vector2(0.75, 0.676758)
+texture = ExtResource("2_p8n4t")
+
+[node name="Title" type="Label" parent="CharacterSelectionMenu"]
+layout_mode = 0
+offset_left = 135.0
+offset_top = 139.0
+offset_right = 798.0
+offset_bottom = 204.0
+text = "Choose Your Character"
+label_settings = SubResource("LabelSettings_title")
+horizontal_alignment = 1
+
+[node name="CharacterContainer" type="VBoxContainer" parent="CharacterSelectionMenu"]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 215.0
+offset_right = 575.0
+offset_bottom = 475.0
+alignment = 1
+
+[node name="PatrickContainer" type="VBoxContainer" parent="CharacterSelectionMenu/CharacterContainer"]
+layout_mode = 2
+
+[node name="PatrickButton" type="Button" parent="CharacterSelectionMenu/CharacterContainer/PatrickContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_character_button")
+theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_2")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_4")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_5")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_9")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_10")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_11")
+text = "Patrick"
+
+[node name="PatrickIndicator" type="Label" parent="CharacterSelectionMenu/CharacterContainer/PatrickContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.282, 0.447, 0.223, 1)
+theme_override_fonts/font = ExtResource("3_h2k8s")
+theme_override_font_sizes/font_size = 20
+text = "✓ SELECTED"
+horizontal_alignment = 1
+
+[node name="Spacer1" type="Control" parent="CharacterSelectionMenu/CharacterContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="AliceContainer" type="VBoxContainer" parent="CharacterSelectionMenu/CharacterContainer"]
+layout_mode = 2
+
+[node name="AliceButton" type="Button" parent="CharacterSelectionMenu/CharacterContainer/AliceContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_character_button")
+theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_2")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_4")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_5")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_9")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_10")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_11")
+text = "Alice"
+
+[node name="AliceIndicator" type="Label" parent="CharacterSelectionMenu/CharacterContainer/AliceContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.282, 0.447, 0.223, 1)
+theme_override_fonts/font = ExtResource("3_h2k8s")
+theme_override_font_sizes/font_size = 20
+text = "✓ SELECTED"
+horizontal_alignment = 1
+
+[node name="Spacer2" type="Control" parent="CharacterSelectionMenu/CharacterContainer"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="RichardContainer" type="VBoxContainer" parent="CharacterSelectionMenu/CharacterContainer"]
+layout_mode = 2
+
+[node name="RichardButton" type="Button" parent="CharacterSelectionMenu/CharacterContainer/RichardContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme = SubResource("Theme_character_button")
+theme_override_colors/font_hover_pressed_color = Color(0.964706, 0.47451, 0, 1)
+theme_override_colors/font_hover_color = Color(0.894118, 0.823529, 0, 1)
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_2")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_3")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_4")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_5")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_7")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_9")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_10")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_11")
+text = "Richard"
+
+[node name="RichardIndicator" type="Label" parent="CharacterSelectionMenu/CharacterContainer/RichardContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0.282, 0.447, 0.223, 1)
+theme_override_fonts/font = ExtResource("3_h2k8s")
+theme_override_font_sizes/font_size = 20
+text = "✓ SELECTED"
+horizontal_alignment = 1
+
+[node name="BottomButtons" type="HBoxContainer" parent="CharacterSelectionMenu"]
+layout_mode = 0
+offset_left = 231.0
+offset_top = 497.0
+offset_right = 610.0
+offset_bottom = 547.0
+
+[node name="BackButton" type="Button" parent="CharacterSelectionMenu/BottomButtons"]
+layout_mode = 2
+theme = ExtResource("4_k5n9v")
+text = "Back"
+flat = true
+
+[node name="Spacer" type="Control" parent="CharacterSelectionMenu/BottomButtons"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ContinueButton" type="Button" parent="CharacterSelectionMenu/BottomButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+theme = ExtResource("4_k5n9v")
+text = "Continue"
+flat = true
+
+[node name="HideMenu" parent="." instance=ExtResource("5_m8p2l")]
+visible = false
+offset_left = -483.0
+offset_top = -448.0
+offset_right = 918.0
+offset_bottom = 985.0
+
+[node name="HideTimer" type="Timer" parent="HideMenu"]
+
+[node name="ShowMenu" parent="." instance=ExtResource("6_t4j8k")]
+visible = false
+offset_left = -483.0
+offset_top = -448.0
+offset_right = 918.0
+offset_bottom = 985.0
+
+[connection signal="pressed" from="CharacterSelectionMenu/CharacterContainer/PatrickContainer/PatrickButton" to="CharacterSelectionMenu" method="_on_patrick_button_pressed"]
+[connection signal="pressed" from="CharacterSelectionMenu/CharacterContainer/AliceContainer/AliceButton" to="CharacterSelectionMenu" method="_on_alice_button_pressed"]
+[connection signal="pressed" from="CharacterSelectionMenu/CharacterContainer/RichardContainer/RichardButton" to="CharacterSelectionMenu" method="_on_richard_button_pressed"]
+[connection signal="pressed" from="CharacterSelectionMenu/BottomButtons/BackButton" to="CharacterSelectionMenu" method="_on_back_button_pressed"]
+[connection signal="pressed" from="CharacterSelectionMenu/BottomButtons/ContinueButton" to="CharacterSelectionMenu" method="_on_continue_button_pressed"]
+[connection signal="timeout" from="HideMenu/HideTimer" to="CharacterSelectionMenu" method="_on_hide_timer_timeout"]
