@@ -3,7 +3,7 @@ extends Node
 var Players = {}
 
 # Character selection system
-enum CharacterType { PATRICK, ALICE, THIRD_CHARACTER }
+enum CharacterType { PATRICK, ALICE, RICHARD }
 
 # Store character selections per player ID
 var player_character_selections : Dictionary = {}
@@ -12,14 +12,14 @@ var player_character_selections : Dictionary = {}
 const CHARACTER_SCENES = {
 	CharacterType.PATRICK: "res://scenes/player/Patrick/patrick.tscn",
 	CharacterType.ALICE: "res://scenes/player/Alice/alice.tscn",
-	CharacterType.THIRD_CHARACTER: "res://scenes/player/Patrick/patrick.tscn"  # Placeholder for future third character
+	CharacterType.RICHARD: "res://scenes/player/Richard/richard.tscn"
 }
 
 # Character display names
 const CHARACTER_NAMES = {
 	CharacterType.PATRICK: "Patrick",
 	CharacterType.ALICE: "Alice", 
-	CharacterType.THIRD_CHARACTER: "Coming Soon"
+	CharacterType.RICHARD: "Richard"
 }
 
 # Get the scene path for a specific player's selected character
@@ -58,7 +58,7 @@ func get_selected_character() -> CharacterType:
 
 # Get all available characters
 func get_available_characters() -> Array:
-	return [CharacterType.PATRICK, CharacterType.ALICE]  # Don't include third character until ready
+	return [CharacterType.PATRICK, CharacterType.ALICE, CharacterType.RICHARD]
 
 func get_character_name(character: CharacterType) -> String:
 	return CHARACTER_NAMES[character]

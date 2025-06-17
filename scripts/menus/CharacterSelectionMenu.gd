@@ -15,11 +15,13 @@ func _ready() -> void:
 func _update_character_selection_ui():
 	var patrick_indicator = %PatrickIndicator
 	var alice_indicator = %AliceIndicator
+	var richard_indicator = %RichardIndicator
 	
 	# Show/hide indicators based on current local player's selection
 	var current_selection = GameManager.get_selected_character()
 	patrick_indicator.visible = (current_selection == GameManager.CharacterType.PATRICK)
 	alice_indicator.visible = (current_selection == GameManager.CharacterType.ALICE)
+	richard_indicator.visible = (current_selection == GameManager.CharacterType.RICHARD)
 
 func _on_patrick_button_pressed() -> void:
 	GameManager.set_selected_character(GameManager.CharacterType.PATRICK)
@@ -27,6 +29,10 @@ func _on_patrick_button_pressed() -> void:
 
 func _on_alice_button_pressed() -> void:
 	GameManager.set_selected_character(GameManager.CharacterType.ALICE)
+	_update_character_selection_ui()
+
+func _on_richard_button_pressed() -> void:
+	GameManager.set_selected_character(GameManager.CharacterType.RICHARD)
 	_update_character_selection_ui()
 
 func _on_continue_button_pressed() -> void:

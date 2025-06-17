@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cvkb3v2iieaew"
-path="res://.godot/imported/Rifle Aiming Idle.fbx-5dbec6c2b2d3a7e586cf9b8a9a409dfb.scn"
+uid="uid://bndaykeqm3fji"
+path="res://.godot/imported/walking to dying.fbx-ad19df05274394a6c4e4ad61ae637eb2.scn"
 
 [deps]
 
-source_file="res://scenes/player/Richard/mixamo/Rifle Aiming Idle.fbx"
-dest_files=["res://.godot/imported/Rifle Aiming Idle.fbx-5dbec6c2b2d3a7e586cf9b8a9a409dfb.scn"]
+source_file="res://scenes/player/Patrick/mixamo/walking to dying.fbx"
+dest_files=["res://.godot/imported/walking to dying.fbx-ad19df05274394a6c4e4ad61ae637eb2.scn"]
 
 [params]
 
@@ -37,7 +37,7 @@ _subresources={
 "mixamo_com": {
 "save_to_file/enabled": true,
 "save_to_file/keep_custom_tracks": "",
-"save_to_file/path": "res://scenes/player/Richard/animations/rifle_aiming_idle.res",
+"save_to_file/path": "res://scenes/player/Patrick/animations/walking_to_dying.res",
 "settings/loop_mode": 0,
 "slice_1/end_frame": 0,
 "slice_1/loop_mode": 0,
