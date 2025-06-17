@@ -1,6 +1,6 @@
-[gd_scene load_steps=20 format=3 uid="uid://b7aqtvymfrtlp"]
+[gd_scene load_steps=20 format=3 uid="uid://d2by0vdk32foy"]
 
-[ext_resource type="Script" uid="uid://b21ckc7dfpdfw" path="res://scripts/menus/CharacterSelectionMenu.gd" id="1_gfkl2"]
+[ext_resource type="Script" path="res://scripts/menus/CharacterSelectionMenu.gd" id="1_gfkl2"]
 [ext_resource type="Texture2D" uid="uid://dlw4uu7wjo5id" path="res://assets/images/play_backsplash.png" id="2_p8n4t"]
 [ext_resource type="FontFile" uid="uid://b44dr1jdh0n8j" path="res://assets/fonts/RuinaOne-Black.ttf" id="3_h2k8s"]
 [ext_resource type="Theme" uid="uid://bcmb3cg8eegje" path="res://assets/styles/simple_button_white.tres" id="4_k5n9v"]

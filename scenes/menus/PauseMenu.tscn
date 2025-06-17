@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://dmhwas7lm7u2j"]
 
-[ext_resource type="Script" uid="uid://dd258q7snsynr" path="res://scripts/menus/PauseMenu.gd" id="1_hdmo1"]
+[ext_resource type="Script" path="res://scripts/menus/PauseMenu.gd" id="1_hdmo1"]
 [ext_resource type="FontFile" uid="uid://b44dr1jdh0n8j" path="res://assets/fonts/RuinaOne-Black.ttf" id="2_i7533"]
 [ext_resource type="PackedScene" uid="uid://dl825iw012chg" path="res://scenes/misc/hide_menu.tscn" id="3_5c87e"]
 
