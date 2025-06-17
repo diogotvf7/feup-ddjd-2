@@ -42,6 +42,10 @@ func consume(item:int) -> void:
 				health += 5
 	
 	update_health_bar()
+	
+func revive() -> void:
+	health = 20
+	update_health_bar()
 
 func _on_beer_timer_timeout() -> void:
 	$BeerEffect.texture = load("res://assets/images/beer_effect_no_bg.png")

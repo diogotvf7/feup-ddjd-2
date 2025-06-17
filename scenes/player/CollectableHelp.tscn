@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://4ojbjkqru1fg"]
+
+[ext_resource type="Theme" uid="uid://cabpteda0w4nv" path="res://assets/styles/font_style.tres" id="1_g8bcb"]
+
+[node name="CollectableHelp" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Help" type="Label" parent="."]
+layout_mode = 0
+offset_left = 401.0
+offset_top = 597.0
+offset_right = 780.0
+offset_bottom = 617.0
+theme = ExtResource("1_g8bcb")
+text = "there'ss stuff nearby, press e to collect"

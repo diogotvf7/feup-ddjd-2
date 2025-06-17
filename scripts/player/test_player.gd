@@ -19,12 +19,20 @@ const FOV_CHANGE = 1.5
 @onready var inventory: Node = $Inventory/InventoryControl
 @onready var healthEffects: Node = $HealthAndEffects/HealthAndEffectsControl
 
+# Tutorials
+var collectableHelpShowing = false
+var reviveHelpShowing = false
+
+# Multiplayer
 var syncPos = Vector3.ZERO
 var is_paused := false
-var selected_item = 2
 
+# Inventory and powerups
+var selected_item = 2
 var beerEffectFactor = 1
 var cerealEffectFactor = 1
+
+var amDead = false
 
 signal update_bullets
 
@@ -46,6 +54,31 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
+		if amDead or is_paused:
+			pass
+			
+		# See if tutorial for collectables needs to be shown
+		if $CollectableArea.get_overlapping_areas() and not collectableHelpShowing:
+			collectableHelpShowing = true
+			$Tutorials/CollectableHelp.visible = true
+		
+		# Hide that same tutorial
+		elif not $CollectableArea.get_overlapping_areas() and collectableHelpShowing:
+			collectableHelpShowing = false
+			$Tutorials/CollectableHelp.visible = false
+			
+		# See if there are revivable players nearby
+		if $PlayerArea.get_overlapping_areas() and not reviveHelpShowing:
+			for area in $PlayerArea.get_overlapping_areas():
+				if area.get_parent().amDead:
+					reviveHelpShowing = true
+					$Tutorials/ReviveHelp.visible = true
+			
+		# Again, hide that tutorial
+		elif not $PlayerArea.get_overlapping_areas() and reviveHelpShowing:
+			reviveHelpShowing = false
+			$Tutorials/ReviveHelp.visible = false
+					
 		if Input.is_action_just_pressed("collect"):
 			print("entrei filho")
 			for area in $CollectableArea.get_overlapping_areas():
@@ -143,8 +176,8 @@ func _process(delta: float) -> void:
 		#		_update_hand_display()
 
 func _unhandled_input(event: InputEvent) -> void:
-	if is_paused:
-		return
+	if amDead or is_paused:
+		pass
 
 	if $MultiplayerSynchronizer.get_multiplayer_authority() == multiplayer.get_unique_id():
 		if event is InputEventMouseMotion:
@@ -214,6 +247,7 @@ func _headbob(time) -> Vector3:
 	pos.y = sin(time * BOB_FREQ) * BOB_AMP
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
-
-func on_death() -> void:
-	get_tree().quit()
+	
+func reviveMe() -> void:
+	healthEffects.revive()
+	amDead = false
