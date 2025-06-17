@@ -35,7 +35,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*res://scripts/multiplayer_stuff/GameManager.gd"
+GameManager="*res://scripts/GameManager.gd"
 Network="*res://scripts/multiplayer_stuff/Network.gd"
 FmodManager="*res://addons/fmod/FmodManager.gd"
 
@@ -45,7 +45,7 @@ window/stretch/mode="viewport"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/fmod/plugin.cfg")
+enabled=PackedStringArray("res://addons/fmod/plugin.cfg", "res://addons/mixamo_animation_retargeter/plugin.cfg")
 
 [global_group]
 

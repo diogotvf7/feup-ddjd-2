@@ -1,0 +1,152 @@
+[gd_scene load_steps=21 format=3 uid="uid://0bepho4jeakl"]
+
+[ext_resource type="PackedScene" uid="uid://bhh8c4opdk7by" path="res://scenes/player/Patrick/mixamo/Rifle Aiming Idle.fbx" id="1_bq672"]
+[ext_resource type="Animation" uid="uid://8tqe8ky817si" path="res://scenes/player/Patrick/animations/jumping.res" id="2_di23b"]
+[ext_resource type="Script" uid="uid://ctrffyp6c18w6" path="res://scenes/player/Patrick/patrick.gd" id="2_iy4wq"]
+[ext_resource type="PackedScene" uid="uid://b5qpfn4kqy1yg" path="res://models/Gun Models/low_poly_shotgun/scene.gltf" id="3_iy4wq"]
+[ext_resource type="PackedScene" uid="uid://dxaqbsusmt4qt" path="res://scenes/weapons/MuzzleFlash.tscn" id="4_7k04f"]
+[ext_resource type="PackedScene" uid="uid://3cufkh5gqxdc" path="res://models/Gun Models/pistol/scene.gltf" id="4_p62uu"]
+[ext_resource type="PackedScene" uid="uid://bmjami1mqcar8" path="res://models/Gun Models/rpg_launcher_low_poly/scene.gltf" id="5_266lt"]
+[ext_resource type="Animation" uid="uid://c066oep044a8g" path="res://scenes/player/Patrick/animations/rifle_run.res" id="5_bq672"]
+[ext_resource type="PackedScene" uid="uid://2oeeyvikxapf" path="res://models/Collectables Models/beer_can/scene.gltf" id="6_2y24v"]
+[ext_resource type="Animation" uid="uid://csm3pr2xtm86h" path="res://scenes/player/Patrick/animations/rifle_aiming_idle.res" id="6_266lt"]
+[ext_resource type="PackedScene" uid="uid://cbno2ggixvij0" path="res://models/Collectables Models/froot_loops/scene.gltf" id="7_2y24v"]
+[ext_resource type="PackedScene" uid="uid://l57t35k5pd5n" path="res://models/Collectables Models/simple_slime_creature/scene.gltf" id="8_ug2a5"]
+[ext_resource type="Animation" uid="uid://b0a6vemr6vo7t" path="res://scenes/player/Patrick/animations/walking_to_dying.res" id="12_0hge8"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_p62uu"]
+_data = {
+&"dying": ExtResource("12_0hge8"),
+&"idle": ExtResource("6_266lt"),
+&"jumping": ExtResource("2_di23b"),
+&"running": ExtResource("5_bq672")
+}
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_5pmvy"]
+animation = &"idle"
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_ug2a5"]
+
+[sub_resource type="AnimationNodeBlend2" id="AnimationNodeBlend2_27tlw"]
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_yb1qm"]
+animation = &"jumping"
+
+[sub_resource type="AnimationNodeAnimation" id="AnimationNodeAnimation_s1iqe"]
+animation = &"running"
+
+[sub_resource type="AnimationNodeBlendTree" id="AnimationNodeBlendTree_3x1ic"]
+graph_offset = Vector2(-289.719, -13.5264)
+nodes/idle/node = SubResource("AnimationNodeAnimation_5pmvy")
+nodes/idle/position = Vector2(-240, 130)
+nodes/is_jumping/node = SubResource("AnimationNodeBlend2_ug2a5")
+nodes/is_jumping/position = Vector2(450, 160)
+nodes/is_running/node = SubResource("AnimationNodeBlend2_27tlw")
+nodes/is_running/position = Vector2(40, 130)
+nodes/jump/node = SubResource("AnimationNodeAnimation_yb1qm")
+nodes/jump/position = Vector2(260, 410)
+nodes/output/position = Vector2(740, 470)
+nodes/running/node = SubResource("AnimationNodeAnimation_s1iqe")
+nodes/running/position = Vector2(-220, 360)
+node_connections = [&"is_jumping", 0, &"is_running", &"is_jumping", 1, &"jump", &"is_running", 0, &"idle", &"is_running", 1, &"running", &"output", 0, &"is_jumping"]
+
+[node name="Player" instance=ExtResource("1_bq672")]
+script = ExtResource("2_iy4wq")
+
+[node name="Skeleton" parent="." index="0"]
+bones/0/position = Vector3(-0.00461704, 0.786631, 0.00338861)
+bones/0/rotation = Quaternion(-0.109909, -0.340295, -0.0261547, 0.933507)
+bones/1/rotation = Quaternion(0.0569062, -0.000509062, 0.00135841, 0.998379)
+bones/2/rotation = Quaternion(0.134006, -2.08721e-05, -0.00558572, 0.990965)
+bones/3/rotation = Quaternion(0.138134, -0.000421416, -0.00553542, 0.990398)
+bones/4/rotation = Quaternion(0.00637119, 0.0651777, 0.00761406, 0.997824)
+bones/5/rotation = Quaternion(-0.0364165, 0.191895, 0.0902306, 0.97658)
+bones/7/rotation = Quaternion(0.601201, 0.666568, 0.308439, -0.314817)
+bones/8/rotation = Quaternion(0.217506, 0.836648, -0.420422, 0.275601)
+bones/9/rotation = Quaternion(0.391843, -0.634581, 0.320243, 0.584132)
+bones/10/rotation = Quaternion(-0.21654, -0.241088, -0.0654601, 0.94377)
+bones/11/rotation = Quaternion(-0.0721284, -0.0382575, 0.117982, 0.989654)
+bones/12/rotation = Quaternion(0.875425, 0.0264592, -0.237271, 0.420278)
+bones/13/rotation = Quaternion(-0.0606971, 0.0132728, 0.152233, 0.98639)
+bones/15/rotation = Quaternion(0.658149, -0.616313, -0.212935, -0.376373)
+bones/16/rotation = Quaternion(-0.563686, 0.680597, -0.458239, 0.0951977)
+bones/17/rotation = Quaternion(0.549221, 0.512321, -0.493716, 0.438324)
+bones/18/rotation = Quaternion(-0.246811, -0.338249, 0.0622624, 0.905978)
+bones/19/rotation = Quaternion(0.0711919, 0.0196464, -0.275242, 0.958534)
+bones/20/rotation = Quaternion(0.329937, 0.00788747, 0.541013, 0.773554)
+bones/21/rotation = Quaternion(0.218116, -0.087989, -0.293742, 0.926498)
+bones/23/rotation = Quaternion(0.39763, 0.0630905, 0.905475, -0.134259)
+bones/24/rotation = Quaternion(0.00879631, 0.98148, -0.191337, 0.0032469)
+bones/25/rotation = Quaternion(0.00436006, 0.710461, -0.703443, 0.0198605)
+bones/26/rotation = Quaternion(1.58051e-08, 1, -4.76837e-07, 5.26836e-09)
+bones/28/rotation = Quaternion(0.0457544, -0.0535727, 0.996815, 0.0373588)
+bones/29/rotation = Quaternion(-0.00818546, 0.965367, -0.26022, -0.0168682)
+bones/30/rotation = Quaternion(-0.0567333, 0.545934, -0.825199, -0.133359)
+bones/31/rotation = Quaternion(-3.18812e-08, 1, -1.70619e-05, 3.15198e-08)
+
+[node name="Hand" type="BoneAttachment3D" parent="Skeleton" index="1"]
+transform = Transform3D(-0.768425, -0.639714, 0.0169705, 0.00240657, 0.0236299, 0.999718, -0.639935, 0.76825, -0.0166185, -0.0646679, 1.24185, 0.516765)
+bone_name = "LeftHand"
+bone_idx = 10
+
+[node name="Shotgun" parent="Skeleton/Hand" index="0" instance=ExtResource("3_iy4wq")]
+transform = Transform3D(-0.641367, -0.0126165, -0.478005, -0.477937, 0.0419184, 0.640171, 0.0149505, 0.798801, -0.0411438, -0.097064, 0.195975, 0.0635945)
+visible = false
+
+[node name="MuzzleFlash" parent="Skeleton/Hand/Shotgun" index="1" instance=ExtResource("4_7k04f")]
+transform = Transform3D(-0.00313536, -0.0020861, -0.999993, 0.0104015, 0.999944, -0.00211867, 0.999941, -0.010408, -0.00311306, 0.00148204, 0.0633792, 1.3419)
+visible = false
+
+[node name="ShotgunTimer" type="Timer" parent="Skeleton/Hand/Shotgun/MuzzleFlash" index="2"]
+wait_time = 0.1
+
+[node name="Pistol" parent="Skeleton/Hand" index="1" instance=ExtResource("4_p62uu")]
+transform = Transform3D(-1.24829, -0.266755, -1.04552, -1.06403, 0.03874, 1.26049, -0.179237, 1.62783, -0.20133, 0.134342, -0.0282797, 0.124361)
+
+[node name="MuzzleFlash" parent="Skeleton/Hand/Pistol" index="1" instance=ExtResource("4_7k04f")]
+transform = Transform3D(-0.00225245, -0.00131768, -0.199983, 0.00119085, 0.199992, -0.00133112, 0.199984, -0.00120574, -0.00224464, -0.00986692, -0.00385135, 0.27361)
+visible = false
+
+[node name="PistolTimer" type="Timer" parent="Skeleton/Hand/Pistol/MuzzleFlash" index="2"]
+wait_time = 0.1
+
+[node name="Beer" parent="Skeleton/Hand" index="2" instance=ExtResource("6_2y24v")]
+transform = Transform3D(0.0131555, -0.0106955, 0.0106084, 0.0150367, 0.0101755, -0.00838798, -0.000911614, 0.0134932, 0.0147345, 0.0692324, 0.150618, 0.0663576)
+visible = false
+
+[node name="Cereal" parent="Skeleton/Hand" index="3" instance=ExtResource("7_2y24v")]
+transform = Transform3D(0.0678516, -0.0679911, -0.11521, -0.0697322, 0.0922678, -0.0955198, 0.114165, 0.0967669, 0.0101292, 0.0883562, 0.0182385, -0.0496149)
+visible = false
+
+[node name="Slime" parent="Skeleton/Hand" index="4" instance=ExtResource("8_ug2a5")]
+transform = Transform3D(0.299997, -0.00119588, 0.000383213, 0.00119503, 0.299997, 0.000669736, -0.000385863, -0.000668222, 0.299999, -0.00498897, 0.0109875, 0.0554795)
+visible = false
+
+[node name="RPG" parent="Skeleton/Hand" index="5" instance=ExtResource("5_266lt")]
+transform = Transform3D(-0.161229, -0.000707741, 0.118341, 0.117497, 0.0229126, 0.160217, -0.0141245, 0.198682, -0.0180551, -0.176143, -0.43093, 0.0780174)
+visible = false
+
+[node name="MuzzleFlash" parent="Skeleton/Hand/RPG" index="1" instance=ExtResource("4_7k04f")]
+transform = Transform3D(5.93423, -0.885827, -0.0165019, 0.885742, 5.93419, -0.0295369, 0.0206815, 0.0267792, 5.99991, 5.06063, 0.52497, 2.99646)
+visible = false
+
+[node name="RPGTimer" type="Timer" parent="Skeleton/Hand/RPG/MuzzleFlash" index="2"]
+wait_time = 0.1
+
+[node name="AnimationPlayer" parent="." index="1"]
+libraries = {
+&"": SubResource("AnimationLibrary_p62uu")
+}
+autoplay = "jumping"
+
+[node name="AnimationTree" type="AnimationTree" parent="." index="2"]
+unique_name_in_owner = true
+root_node = NodePath("%AnimationTree/..")
+tree_root = SubResource("AnimationNodeBlendTree_3x1ic")
+anim_player = NodePath("../AnimationPlayer")
+parameters/is_jumping/blend_amount = 0.0
+parameters/is_running/blend_amount = false
+
+[connection signal="timeout" from="Skeleton/Hand/Shotgun/MuzzleFlash/ShotgunTimer" to="." method="_on_shotgun_timer_timeout"]
+[connection signal="timeout" from="Skeleton/Hand/Pistol/MuzzleFlash/PistolTimer" to="." method="_on_pistol_timer_timeout"]
+[connection signal="timeout" from="Skeleton/Hand/RPG/MuzzleFlash/RPGTimer" to="." method="_on_rpg_timer_timeout"]

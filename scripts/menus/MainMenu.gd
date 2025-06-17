@@ -28,7 +28,7 @@ func _on_credits_pressed() -> void:
 
 func _on_hide_timer_timeout() -> void:
 	if nextScene == 1:
-		get_tree().change_scene_to_packed(load("res://scenes/menus/PlayMenu.tscn"))
+		get_tree().change_scene_to_packed(load("res://scenes/menus/CharacterSelectionMenu.tscn"))
 	elif nextScene == 2:
 		get_tree().change_scene_to_packed(load("res://scenes/menus/HelpMenu.tscn"))
 	elif nextScene == 3:

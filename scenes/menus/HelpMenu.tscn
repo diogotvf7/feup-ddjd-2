@@ -84,6 +84,7 @@ flat = true
 [node name="HideTimer" type="Timer" parent="HideMenu"]
 
 [node name="ShowMenu" parent="." instance=ExtResource("8_sk0p4")]
+visible = false
 
 [connection signal="pressed" from="HelpMenuControl/Back" to="HelpMenuControl" method="_on_back_pressed"]
 [connection signal="timeout" from="HideMenu/HideTimer" to="HelpMenuControl" method="_on_hide_timer_timeout"]

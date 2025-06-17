@@ -1,26 +1,32 @@
 [gd_scene load_steps=6 format=3 uid="uid://cowfsbonrvr7h"]
 
 [ext_resource type="Script" uid="uid://blrj3xqmolocp" path="res://scripts/aliens/Alien.gd" id="1_6xk8f"]
-[ext_resource type="PackedScene" uid="uid://wvwvbu8pqwn7" path="res://scenes/components/health_component.tscn" id="2_8e3ao"]
+[ext_resource type="PackedScene" uid="uid://bxgp3yu0m1053" path="res://scenes/aliens/alien_character.tscn" id="2_st8jh"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ykcao"]
+radius = 0.21549
+height = 1.59466
 
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_6xk8f"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_8e3ao"]
 albedo_color = Color(0.803275, 0, 0.15815, 1)
 
-[node name="Enemy" type="CharacterBody3D"]
+[node name="Enemy" type="CharacterBody3D" groups=["alien"]]
+collision_layer = 8
+collision_mask = 8
 script = ExtResource("1_6xk8f")
 
+[node name="Alien" parent="." instance=ExtResource("2_st8jh")]
+transform = Transform3D(0.75, 0, 0, 0, 0.75, 0, 0, 0, 0.75, 0, -0.877773, 0)
+
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0657373, 0)
 shape = SubResource("CapsuleShape3D_ykcao")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+visible = false
 mesh = SubResource("CapsuleMesh_6xk8f")
 surface_material_override/0 = SubResource("StandardMaterial3D_8e3ao")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
-
-[node name="HealthComponent" parent="." instance=ExtResource("2_8e3ao")]
-script = null

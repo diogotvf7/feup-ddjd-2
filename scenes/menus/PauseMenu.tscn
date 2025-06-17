@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dmhwas7lm7u2j"]
+[gd_scene load_steps=4 format=3 uid="uid://dmhwas7lm7u2j"]
 
-[ext_resource type="Script" uid="uid://dd258q7snsynr" path="res://scripts/menus/pause_menu.gd" id="1_hdmo1"]
+[ext_resource type="Script" uid="uid://dd258q7snsynr" path="res://scripts/menus/PauseMenu.gd" id="1_hdmo1"]
 [ext_resource type="FontFile" uid="uid://b44dr1jdh0n8j" path="res://assets/fonts/RuinaOne-Black.ttf" id="2_i7533"]
+[ext_resource type="PackedScene" uid="uid://dl825iw012chg" path="res://scenes/misc/hide_menu.tscn" id="3_5c87e"]
 
 [node name="PauseMenu" type="Control"]
 layout_mode = 3
@@ -45,6 +46,16 @@ size_flags_vertical = 4
 theme_override_fonts/font = ExtResource("2_i7533")
 text = "Leave Game"
 
+[node name="HideMenu" parent="." instance=ExtResource("3_5c87e")]
+layout_mode = 0
+offset_left = -483.0
+offset_top = -448.0
+offset_right = 918.0
+offset_bottom = 985.0
+
+[node name="HideMenuTimer" type="Timer" parent="HideMenu"]
+
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Settings" to="." method="_on_settings_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/LeaveGame" to="." method="_on_leave_game_pressed"]
+[connection signal="timeout" from="HideMenu/HideMenuTimer" to="." method="_on_hide_menu_timer_timeout"]
