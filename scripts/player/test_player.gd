@@ -80,34 +80,37 @@ func _process(delta: float) -> void:
 			$Tutorials/ReviveHelp.visible = false
 					
 		if Input.is_action_just_pressed("collect"):
-			print("entrei filho")
 			for area in $CollectableArea.get_overlapping_areas():
 				var collectable_node = area.get_parent()
-				if collectable_node.is_in_group("collectable"):
-					match collectable_node.collectable:
-						"beer":
-							if not inventory.beer:
-								inventory.beer = true
-								inventory.inventory_updated += 1
-								collectable_node.queue_free()
-						"cereal":
-							if not inventory.cereal:
-								inventory.cereal = true
-								inventory.inventory_updated += 1
-								collectable_node.queue_free()
-						"slime":
-							if not inventory.slime:
-								inventory.slime = true
-								inventory.inventory_updated += 1
-								collectable_node.queue_free()
-						"ammoBox":
-							inventory.shotgun_bullets += 10
+				match collectable_node.collectable:
+					"beer":
+						if not inventory.beer:
+							inventory.beer = true
+							inventory.inventory_updated += 1
 							collectable_node.queue_free()
-						"rpg":
-							if not inventory.rpg:
-								inventory.rpg = true
-								inventory.inventory_updated += 1
-								collectable_node.queue_free()
+					"cereal":
+						if not inventory.cereal:
+							inventory.cereal = true
+							inventory.inventory_updated += 1
+							collectable_node.queue_free()
+					"slime":
+						if not inventory.slime:
+							inventory.slime = true
+							inventory.inventory_updated += 1
+							collectable_node.queue_free()
+					"ammoBox":
+						inventory.shotgun_bullets += 10
+						collectable_node.queue_free()
+					"rpg":
+						if not inventory.rpg:
+							inventory.rpg = true
+							inventory.inventory_updated += 1
+							collectable_node.queue_free()
+			
+			for area in $PlayerArea.get_overlapping_areas():
+				var playerNode = area.get_parent()
+				if playerNode.amDead:
+					playerNode.revive()
 
 		if Input.is_action_just_pressed("shoot"):
 			match selected_item:
@@ -121,8 +124,9 @@ func _process(delta: float) -> void:
 				2: # Pistol
 					if inventory.pistol:
 						$Pistol.play()
-						# Add pistol shooting logic here
-						pass
+						$Head/Camera3D/Hand/Pistol/MuzzleFlash.visible = true
+						$Head/Camera3D/Hand/Pistol/MuzzleFlash/MuzzleFlashTimer.start()
+						
 				3: # Beer
 					if inventory.beer:
 						inventory.beer = false
@@ -150,6 +154,14 @@ func _process(delta: float) -> void:
 						$SlimeEffect.visible = true
 						selected_item = 2
 						_update_hand_display()
+				6: # RPG
+					if inventory.rpg:
+						$RPG.play()
+						inventory.rpg = false
+						inventory.inventory_updated += 1
+						
+						selected_item = 2
+						_update_hand_display()
 		if Input.is_action_just_pressed("inventory_item_1"):
 			if inventory.shotgun:
 				selected_item = 1
@@ -170,10 +182,10 @@ func _process(delta: float) -> void:
 			if inventory.slime:
 				selected_item = 5
 				_update_hand_display()
-		#if Input.is_action_just_pressed("inventory_item_6"):
-		#	if inventory.rpg:
-		#		selected_item = 6
-		#		_update_hand_display()
+		if Input.is_action_just_pressed("inventory_item_6"):
+			if inventory.rpg:
+				selected_item = 6
+				_update_hand_display()
 
 func _unhandled_input(event: InputEvent) -> void:
 	if amDead or is_paused:
@@ -248,6 +260,13 @@ func _headbob(time) -> Vector3:
 	pos.x = cos(time * BOB_FREQ / 2) * BOB_AMP
 	return pos
 	
+func killPlayer() -> void:
+	amDead = true
+
 func reviveMe() -> void:
 	healthEffects.revive()
 	amDead = false
+
+# Muzzle flashes
+func _on_muzzle_flash_timer_timeout() -> void:
+	$Head/Camera3D/Hand/Pistol/MuzzleFlash.visible = false

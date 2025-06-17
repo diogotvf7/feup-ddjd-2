@@ -30,6 +30,11 @@ func _ready() -> void:
 		$Slime.texture = load("res://assets/images/slime_bg.png")
 	else:
 		$Slime.texture = load("res://assets/images/slime_no_bg.png")
+		
+	if rpg:
+		$RPG.texture = load("res://assets/images/rpg_bg.png")
+	else:
+		$RPG.texture = load("res://assets/images/rpg_no_bg.png")
 
 func _process(delta: float) -> void:
 	if inventory_updated > 0:
@@ -50,6 +55,11 @@ func _process(delta: float) -> void:
 			$Slime.texture = load("res://assets/images/slime_bg.png")
 		else:
 			$Slime.texture = load("res://assets/images/slime_no_bg.png")
+			
+		if rpg:
+			$RPG.texture = load("res://assets/images/rpg_bg.png")
+		else:
+			$RPG.texture = load("res://assets/images/rpg_no_bg.png")
 		inventory_updated -= 1
 		
 func update_bullets() -> void:

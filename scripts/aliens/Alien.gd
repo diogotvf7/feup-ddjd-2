@@ -20,7 +20,7 @@ func process_move(delta: float) -> void:
 
 	# Find the closest player
 	for p in players:
-		if not p or not p.is_inside_tree():
+		if not p or not p.is_inside_tree() or p.amDead:
 			continue
 		var distance = global_position.distance_to(p.global_position)
 		if distance < closest_distance:

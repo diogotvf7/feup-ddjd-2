@@ -2,8 +2,8 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ce2qo2iknwy42"
-path.s3tc="res://.godot/imported/shotgun_bg.png-87e107294fcf6097ff42164391970242.s3tc.ctex"
+uid="uid://d5n45h3k8a3j"
+path.s3tc="res://.godot/imported/muzzle_flash.png-fb0e4d9ec289ca8d39d4b7c78c2acac0.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
@@ -11,8 +11,8 @@ metadata={
 
 [deps]
 
-source_file="res://assets/images/shotgun_bg.png"
-dest_files=["res://.godot/imported/shotgun_bg.png-87e107294fcf6097ff42164391970242.s3tc.ctex"]
+source_file="res://assets/images/muzzle_flash.png"
+dest_files=["res://.godot/imported/muzzle_flash.png-fb0e4d9ec289ca8d39d4b7c78c2acac0.s3tc.ctex"]
 
 [params]
 

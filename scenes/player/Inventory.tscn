@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://1g2gf6khqnlq"]
+[gd_scene load_steps=11 format=3 uid="uid://1g2gf6khqnlq"]
 
 [ext_resource type="Texture2D" uid="uid://36yvi2lrcdwh" path="res://assets/images/shotgun_no_bg.png" id="1_jvgvc"]
 [ext_resource type="Script" uid="uid://dnq06v4gcbkjy" path="res://scripts/player/Inventory.gd" id="1_tcrjn"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dinmqtcfc4ifq" path="res://assets/images/beer_no_bg.png" id="5_4hlv2"]
 [ext_resource type="Texture2D" uid="uid://6gulqux6pkl2" path="res://assets/images/slime_no_bg.png" id="6_hgup7"]
 [ext_resource type="Theme" uid="uid://cabpteda0w4nv" path="res://assets/styles/font_style.tres" id="7_4hlv2"]
+[ext_resource type="Texture2D" uid="uid://clkb170v2nfab" path="res://assets/images/rpg_no_bg.png" id="7_eej10"]
 [ext_resource type="Script" uid="uid://dd8hc73nc3tcf" path="res://scripts/player/BulletCount.gd" id="8_hgup7"]
 [ext_resource type="Texture2D" uid="uid://br888u2ydlfd" path="res://assets/images/crosshair.png" id="9_hgup7"]
 
@@ -45,6 +46,12 @@ texture = ExtResource("5_4hlv2")
 position = Vector2(1111, 382)
 scale = Vector2(0.127432, 0.127432)
 texture = ExtResource("6_hgup7")
+
+[node name="RPG" type="Sprite2D" parent="InventoryControl"]
+position = Vector2(1106, 288)
+rotation = 1.5708
+scale = Vector2(0.13728, 0.13728)
+texture = ExtResource("7_eej10")
 
 [node name="bullets" type="Label" parent="InventoryControl"]
 layout_mode = 0

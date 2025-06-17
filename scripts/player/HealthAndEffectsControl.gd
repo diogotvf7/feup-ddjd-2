@@ -15,7 +15,8 @@ func damage(attack: Attack) -> void:
 		parent.on_damage(attack)
 	
 	if health <= 0:
-		get_parent().on_death()
+		health = 0
+		get_parent().killPlayer()
 
 func consume(item:int) -> void:
 	match item:
