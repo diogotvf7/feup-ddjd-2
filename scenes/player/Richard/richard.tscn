@@ -268,38 +268,38 @@ node_connections = [&"is_dying", 0, &"is_jumping", &"is_dying", 1, &"die", &"is_
 script = ExtResource("2_uyhmk")
 
 [node name="Skeleton" parent="." index="0"]
-bones/0/position = Vector3(0.000504214, 0.713835, -0.00227497)
-bones/0/rotation = Quaternion(-0.112185, -0.340323, -0.0230145, 0.933309)
-bones/1/rotation = Quaternion(0.0549834, 0.000169405, -8.79224e-05, 0.998487)
-bones/2/rotation = Quaternion(0.137265, 5.34248e-05, -0.00519979, 0.990521)
-bones/3/rotation = Quaternion(0.140937, -0.000261873, -0.00514802, 0.990005)
-bones/4/rotation = Quaternion(0.00878744, 0.0651675, 0.00784414, 0.997805)
-bones/5/rotation = Quaternion(-0.0262929, 0.191069, 0.0917184, 0.976928)
-bones/7/rotation = Quaternion(0.599541, 0.668111, 0.303793, -0.319199)
-bones/8/rotation = Quaternion(0.19681, 0.848398, -0.406017, 0.276834)
-bones/9/rotation = Quaternion(0.379049, -0.663853, 0.340214, 0.547608)
-bones/10/rotation = Quaternion(-0.288966, -0.24715, -0.235696, 0.894351)
-bones/11/rotation = Quaternion(0.262852, 0.0856749, -0.184591, 0.94313)
+bones/0/position = Vector3(4.74805e-05, 0.71392, -0.000757907)
+bones/0/rotation = Quaternion(-0.110466, -0.340792, -0.0247738, 0.933298)
+bones/1/rotation = Quaternion(0.0581393, 5.59754e-05, -0.000499605, 0.998308)
+bones/2/rotation = Quaternion(0.133789, -3.16444e-05, -0.00567183, 0.990994)
+bones/3/rotation = Quaternion(0.138112, -0.000462006, -0.00564357, 0.9904)
+bones/4/rotation = Quaternion(0.00598708, 0.0651801, 0.00757428, 0.997827)
+bones/5/rotation = Quaternion(-0.0373489, 0.191971, 0.0901188, 0.97654)
+bones/7/rotation = Quaternion(0.598228, 0.669457, 0.302807, -0.319778)
+bones/8/rotation = Quaternion(0.196835, 0.848271, -0.405477, 0.277995)
+bones/9/rotation = Quaternion(0.380186, -0.66333, 0.341391, 0.546722)
+bones/10/rotation = Quaternion(-0.29165, -0.243169, -0.236481, 0.894363)
+bones/11/rotation = Quaternion(0.2625, 0.0856099, -0.184663, 0.94322)
 bones/12/rotation = Quaternion(0.572945, -0.0666951, 0.47055, 0.667733)
 bones/13/rotation = Quaternion(0.0591624, -0.0143012, -0.353085, 0.933609)
 bones/15/rotation = Quaternion(0.65488, -0.618126, -0.207614, -0.382033)
-bones/16/rotation = Quaternion(-0.556724, 0.698971, -0.441582, 0.0806388)
-bones/17/rotation = Quaternion(0.540721, 0.549031, -0.510214, 0.381926)
-bones/18/rotation = Quaternion(-0.326686, -0.34479, 0.148836, 0.86732)
-bones/19/rotation = Quaternion(0.115939, -0.000141091, -0.0591236, 0.991495)
+bones/16/rotation = Quaternion(-0.556544, 0.698993, -0.441567, 0.0817707)
+bones/17/rotation = Quaternion(0.540912, 0.548834, -0.510419, 0.381666)
+bones/18/rotation = Quaternion(-0.326464, -0.34217, 0.142744, 0.869463)
+bones/19/rotation = Quaternion(0.115626, -0.000117606, -0.0592285, 0.991525)
 bones/20/rotation = Quaternion(0.281697, -0.0059849, -0.00149798, 0.959484)
 bones/21/rotation = Quaternion(0.209979, 0.0183016, -0.0572646, 0.975856)
-bones/23/rotation = Quaternion(0.397805, 0.051795, 0.907666, -0.123336)
-bones/24/rotation = Quaternion(0.00767634, 0.981374, -0.19176, 0.00865369)
-bones/25/rotation = Quaternion(0.00460351, 0.702523, -0.711461, 0.0162161)
+bones/23/rotation = Quaternion(0.39914, 0.0541276, 0.906495, -0.126589)
+bones/24/rotation = Quaternion(0.00977766, 0.980759, -0.194944, 0.00374395)
+bones/25/rotation = Quaternion(0.00715017, 0.700608, -0.71328, 0.0181445)
 bones/26/rotation = Quaternion(-1.64636e-08, 1, 2.08616e-07, 8.56108e-09)
-bones/28/rotation = Quaternion(0.0458652, -0.0684605, 0.995825, 0.0392741)
-bones/29/rotation = Quaternion(-0.00816603, 0.966054, -0.257742, -0.0155794)
-bones/30/rotation = Quaternion(-0.0580912, 0.536858, -0.830938, -0.133979)
-bones/31/rotation = Quaternion(-1.51382e-07, 1, 0.000169736, 2.8722e-08)
+bones/28/rotation = Quaternion(0.0456104, -0.0695893, 0.995829, 0.037434)
+bones/29/rotation = Quaternion(-0.00837186, 0.96678, -0.254898, -0.0171435)
+bones/30/rotation = Quaternion(-0.0564061, 0.537903, -0.830616, -0.132496)
+bones/31/rotation = Quaternion(-6.31891e-10, 1, -2.71877e-05, -2.56566e-08)
 
 [node name="Hand" type="BoneAttachment3D" parent="Skeleton" index="1"]
-transform = Transform3D(-0.619885, -0.777821, -0.10362, 0.0359, -0.160025, 0.98646, -0.783871, 0.607771, 0.127121, -0.0218692, 1.20518, 0.532811)
+transform = Transform3D(-0.617346, -0.779634, -0.105141, 0.0292821, -0.15633, 0.987271, -0.786147, 0.606409, 0.119339, -0.0221423, 1.20819, 0.535797)
 bone_name = "LeftHand"
 bone_idx = 10
 
@@ -324,7 +324,7 @@ transform = Transform3D(0.299997, -0.00119588, 0.000383213, 0.00119503, 0.299997
 visible = false
 
 [node name="RPG" parent="Skeleton/Hand" index="5" instance=ExtResource("8_y2ulp")]
-transform = Transform3D(-0.161131, 0.0276236, 0.115211, 0.116147, -0.00155071, 0.162812, 0.0233803, 0.198077, -0.0147925, -0.166825, -0.446604, 0.00430775)
+transform = Transform3D(-0.16472, 0.0307276, 0.109193, 0.111201, 0.00573732, 0.166137, 0.0223923, 0.197542, -0.02181, -0.111473, -0.45414, 0.0383284)
 
 [node name="AnimationPlayer" parent="." index="1"]
 libraries = {
