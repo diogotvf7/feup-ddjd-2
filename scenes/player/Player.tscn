@@ -1,8 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dy3ajs4ctabub"]
+[gd_scene load_steps=5 format=3 uid="uid://dy3ajs4ctabub"]
 
 [ext_resource type="Script" uid="uid://7mrs8xoe4hcb" path="res://scripts/player/test_player.gd" id="1_gfjak"]
 [ext_resource type="PackedScene" uid="uid://wvwvbu8pqwn7" path="res://scenes/components/health_component.tscn" id="2_4kuee"]
-[ext_resource type="PackedScene" uid="uid://0bepho4jeakl" path="res://scenes/player/Patrick/patrick.tscn" id="2_524rm"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_tpg5x"]
 radius = 0.237668
@@ -19,7 +18,7 @@ properties/1/replication_mode = 0
 [node name="Player" type="CharacterBody3D" groups=["Player"]]
 script = ExtResource("1_gfjak")
 
-[node name="Character" parent="." instance=ExtResource("2_524rm")]
+[node name="CharacterContainer" type="Node3D" parent="."]
 unique_name_in_owner = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]

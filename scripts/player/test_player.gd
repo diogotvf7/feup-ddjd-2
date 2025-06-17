@@ -24,6 +24,8 @@ var syncPos: Vector3 = Vector3.ZERO
 var is_paused: bool = false
 var last_movement_direction: Vector3 = Vector3.BACK
 var player_rotation_y: float = 0.0
+var character: Node3D = null
+var animation_tree: AnimationTree = null
 #endregion
 
 #region Camera System
@@ -69,8 +71,7 @@ var camera_controller: CameraController
 @onready var camera: Camera3D = %Camera3D
 @onready var health_label: Label = $HealthLabel
 @onready var health_component: Node = $HealthComponent
-@onready var character: Node3D = %Character
-@onready var animation_tree: AnimationTree = %Character/AnimationTree
+@onready var character_container: Node3D = %CharacterContainer
 @onready var camera_pivot: Node3D = %CameraPivot
 #endregion
 
@@ -85,6 +86,7 @@ func _ready() -> void:
 	_setup_input()
 	_setup_multiplayer()
 	_setup_camera()
+	_load_selected_character()
 
 func _setup_input() -> void:
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -110,6 +112,37 @@ func _setup_camera() -> void:
 	}
 	
 	camera_controller.setup_camera(overrides)
+
+func _load_selected_character() -> void:
+	# Get the player ID from the node name
+	var player_id = int(name)
+	
+	# Get the selected character scene path for this specific player
+	var character_scene_path = GameManager.get_player_character_scene(player_id)
+	
+	# Load and instantiate the character scene
+	var character_scene = load(character_scene_path)
+	if character_scene:
+		character = character_scene.instantiate()
+		character_container.add_child(character)
+		
+		# Try to get the animation tree from the character
+		animation_tree = character.get_node_or_null("AnimationTree")
+		if not animation_tree:
+			# Try alternative paths where AnimationTree might be located
+			for child in character.get_children():
+				if child is AnimationTree:
+					animation_tree = child
+					break
+		
+		var selected_character_type = GameManager.get_player_character_selection(player_id)
+		print("Player ", player_id, " loaded character: ", GameManager.get_character_name(selected_character_type))
+		if animation_tree:
+			print("Animation tree found and connected for player ", player_id)
+		else:
+			print("Warning: No AnimationTree found for player ", player_id, "'s character")
+	else:
+		print("Error: Could not load character scene for player ", player_id, ": ", character_scene_path)
 #endregion
 
 #region Input Handling
@@ -172,14 +205,21 @@ func _handle_jump() -> void:
 		velocity.y += JUMP_IMPULSE
 
 func _update_character_animation() -> void:
+	if not character:
+		return
+		
+	# Try to call animation methods if the character has them
 	if not is_on_floor():
-		character.jump()
+		if character.has_method("jump"):
+			character.jump()
 	else:
 		var ground_speed = velocity.length()
 		if ground_speed > 0.0:
-			character.run()
+			if character.has_method("run"):
+				character.run()
 		else:
-			character.idle()
+			if character.has_method("idle"):
+				character.idle()
 #endregion
 
 #region UI Updates

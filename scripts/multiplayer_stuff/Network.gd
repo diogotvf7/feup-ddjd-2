@@ -92,6 +92,9 @@ func send_player_information(name:String, id:int) -> void:
 	if multiplayer.is_server():
 		for p_id in GameManager.Players:
 			send_player_information.rpc(GameManager.Players[p_id].name, p_id)
+		
+		# Sync character selections to the new player
+		GameManager.on_player_connected(id)
 	
 	print("Emitting player_info_updated signal")
 	emit_signal("player_info_updated")
