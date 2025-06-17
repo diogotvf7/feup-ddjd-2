@@ -346,17 +346,39 @@ func shoot_gun(damage: int) -> void:
 	# Use camera to get ray from center of screen
 	var from = camera.project_ray_origin(screen_center)
 	var direction = camera.project_ray_normal(screen_center)
-	var to = from + direction * 1000
+	var to = from + direction * 2000
 
 	var query = PhysicsRayQueryParameters3D.new()
 	query.from = from
 	query.to = to
 	query.exclude = [self]
-	query.collision_mask = 4 # Assuming layer 4 is for aliens
+	query.collision_mask = 0xFFFFFFFF # Assuming layer 4 is for aliens
+	
+	draw_debug_line(from, to)
 
 	var space_state = get_world_3d().direct_space_state
 	var result = space_state.intersect_ray(query)
+	
+	print(result)
 
 	if result and result.collider and result.collider.is_in_group("alien"):
 		print("alien shot")
 		result.collider.take_damage(damage)
+
+func draw_debug_line(from: Vector3, to: Vector3, duration := 0.1):
+	var line = MeshInstance3D.new()
+	var mesh = ImmediateMesh.new()
+	mesh.surface_begin(Mesh.PRIMITIVE_LINES)
+	mesh.surface_add_vertex(from)
+	mesh.surface_add_vertex(to)
+	mesh.surface_end()
+	line.mesh = mesh
+
+	var mat = StandardMaterial3D.new()
+	mat.albedo_color = Color.RED
+	mesh.surface_set_material(0, mat)
+
+	get_tree().current_scene.add_child(line)
+
+	await get_tree().create_timer(duration).timeout
+	line.queue_free()

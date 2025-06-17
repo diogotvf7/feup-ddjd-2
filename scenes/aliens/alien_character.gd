@@ -36,6 +36,6 @@ func attack():
 func die():
 	is_dead = true
 	is_attacking = false
-	animation_tree.set("parameters/is_dead/blend_amount", 1.0)
+	animation_tree.set("parameters/is_dying/blend_amount", 1.0)
 	animation_tree.set("parameters/is_running/blend_amount", 0.0)
 	animation_tree.set("parameters/is_attacking/blend_amount", 0.0)

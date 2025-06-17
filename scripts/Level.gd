@@ -17,6 +17,10 @@ func pause_menu():
 			var inventory_ui = player.get_node_or_null("Inventory")
 			if inventory_ui:
 				inventory_ui.visible = true
+			
+			var health_ui = player.get_node_or_null("HealthAndEffects")
+			if health_ui:
+				health_ui.visible = true
 		
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	else:
@@ -26,6 +30,10 @@ func pause_menu():
 			var inventory_ui = player.get_node_or_null("Inventory")
 			if inventory_ui:
 				inventory_ui.visible = false
+				
+			var health_ui = player.get_node_or_null("HealthAndEffects")
+			if health_ui:
+				health_ui.visible = false
 		
 		Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 

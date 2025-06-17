@@ -130,16 +130,16 @@ func on_death() -> void:
 		is_dead = true
 		alien_character.die()
 		# Wait a bit before destroying to let death animation play
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(3.9).timeout
 		
 		# Spawn collectable of type slime
-		var collectable_scene = preload("res://scenes/consumables/Collectable.tscn")
-		var collectable_instance = collectable_scene.instantiate()
-		collectable_instance.collectable = "slime"
-		collectable_instance.global_transform = global_transform
+		#var collectable_scene = preload("res://scenes/consumables/Collectable.tscn")
+		#var collectable_instance = collectable_scene.instantiate()
+		#collectable_instance.collectable = "slime"
+		#collectable_instance.global_transform = global_transform
 
 		# Add to the 'collectables' node (parent of parent of this node)
-		var collectables_node = get_parent().get_parent().get_node("collectables")
-		collectables_node.add_child(collectable_instance)
+		#var collectables_node = get_parent().get_parent().get_node("collectables")
+		#collectables_node.add_child(collectable_instance)
 
 		queue_free()
